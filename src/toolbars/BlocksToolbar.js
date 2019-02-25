@@ -46,7 +46,7 @@ export const BlocksToolbar = props => {
       >
         <FontAwesomeIcon icon={faCode} />
       </BlockButton>
-      <BlockButton
+      {/* <BlockButton
         onClick={() => {
           if (editor.isBlockEmpty()) {
             editor.setBlocks("nonexecutable-code");
@@ -74,7 +74,7 @@ export const BlocksToolbar = props => {
         }}
       >
         <FontAwesomeIcon icon={faChevronCircleRight} />
-      </BlockButton>
+      </BlockButton> */}
       <BlockButton
         onClick={() => {
           editor.setBlocks("heading-1");
