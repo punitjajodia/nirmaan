@@ -1,13 +1,13 @@
 {
   "main.css": "/nirmaan/static/css/main.f6c2f0c9.chunk.css",
-  "main.js": "/nirmaan/static/js/main.6326e023.chunk.js",
-  "main.js.map": "/nirmaan/static/js/main.6326e023.chunk.js.map",
+  "main.js": "/nirmaan/static/js/main.f9f31792.chunk.js",
+  "main.js.map": "/nirmaan/static/js/main.f9f31792.chunk.js.map",
   "runtime~main.js": "/nirmaan/static/js/runtime~main.b38b4f67.js",
   "runtime~main.js.map": "/nirmaan/static/js/runtime~main.b38b4f67.js.map",
   "static/js/2.853bb6a5.chunk.js": "/nirmaan/static/js/2.853bb6a5.chunk.js",
   "static/js/2.853bb6a5.chunk.js.map": "/nirmaan/static/js/2.853bb6a5.chunk.js.map",
   "index.html": "/nirmaan/index.html",
-  "precache-manifest.e950ca27b15730eacac01ab51018332f.js": "/nirmaan/precache-manifest.e950ca27b15730eacac01ab51018332f.js",
+  "precache-manifest.8b0d8a9761cd42ffdc8b52be6bf59a1f.js": "/nirmaan/precache-manifest.8b0d8a9761cd42ffdc8b52be6bf59a1f.js",
   "service-worker.js": "/nirmaan/service-worker.js",
   "static/css/main.f6c2f0c9.chunk.css.map": "/nirmaan/static/css/main.f6c2f0c9.chunk.css.map"
 }
