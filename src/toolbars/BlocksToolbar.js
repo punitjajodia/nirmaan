@@ -228,4 +228,5 @@ const InsertImagePopup = props => {
 const InsertImagePopupWrapper = styled.div`
   width: 50%;
   padding: 30px 50px;
+  z-index: 10000;
 `;
