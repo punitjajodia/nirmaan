@@ -78,3 +78,7 @@ td > p:first-child {
 td > p:last-child {
   margin-bottom: 0;
 }
+
+.popup-overlay {
+  z-index: 1001;
+}

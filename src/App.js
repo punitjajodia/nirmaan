@@ -178,7 +178,6 @@ const ToolbarLayout = styled.div`
   top: 0;
   grid-template-columns: 20% 80%;
   grid-column-gap: 50px;
-  z-index: 1000;
   background: white;
 `;
 
