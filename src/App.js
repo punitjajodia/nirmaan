@@ -148,9 +148,12 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <FormatToolbar editor={this.editor} />
-        <BlocksToolbar editor={this.editor} onChange={this.onChange} />
+        <ToolbarLayout>
+          <FormatToolbar editor={this.editor} />
+        </ToolbarLayout>
+
         <Layout>
+          <BlocksToolbar editor={this.editor} onChange={this.onChange} />
           <Editor
             plugins={plugins}
             value={this.state.value}
@@ -168,10 +171,26 @@ class App extends Component {
   }
 }
 
-const Layout = styled.div`
+const ToolbarLayout = styled.div`
+  width: 100%;
+  position: fixed;
   display: grid;
-  grid-template-columns: 50% 50%;
+  top: 0;
+  grid-template-columns: 20% 80%;
   grid-column-gap: 50px;
+  z-index: 1000;
+  background: white;
+`;
+
+const Layout = styled.div`
+  margin-top: 50px;
+  display: grid;
+
+  grid-column-gap: 50px;
+
+  @media (min-width: 720px) {
+    grid-template-columns: 50% 50%;
+  }
 `;
 
 const WordCounter = styled("span")`

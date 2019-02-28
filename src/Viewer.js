@@ -35,7 +35,6 @@ const Viewer = props => {
 };
 
 const ViewerWrapper = styled.div`
-  position: relative;
   padding: 10px;
 `;
 

@@ -77,5 +77,5 @@ const FormatToolbarWrapper = styled.div`
   display: flex;
   border-bottom: solid 1.7px rgba(199, 198, 255, 0.15);
   padding: 10px 0;
-  margin: 0 0 10px 0;
+  background: white;
 `;

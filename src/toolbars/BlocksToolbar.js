@@ -182,11 +182,9 @@ export const BlocksToolbar = props => {
 const BlocksToolbarWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  padding: 10px 0;
-  margin: 0 0 10px 0;
   position: fixed;
-  left: 100px;
-  top: 100px;
+  left: 0;
+  top: 10%;
 `;
 
 const InsertImagePopup = props => {

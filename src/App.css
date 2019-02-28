@@ -1,8 +1,9 @@
 .App {
-  padding: 20px;
+  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
   position: relative;
+  padding-left: 70px;
 }
 
 .App-logo {
