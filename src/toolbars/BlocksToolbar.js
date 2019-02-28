@@ -9,7 +9,8 @@ import {
   faListUl,
   faListOl,
   faCircle,
-  faChevronCircleRight
+  faChevronCircleRight,
+  faStickyNote
 } from "@fortawesome/free-solid-svg-icons";
 import { BlockButton, PrimaryButton } from "../components/Buttons";
 import styled from "styled-components";
@@ -134,6 +135,15 @@ export const BlocksToolbar = props => {
             } else {
               onChange(editor.unwrapList());
             }
+          }}
+        />
+      </BlockButton>
+      <BlockButton>
+        <FontAwesomeIcon
+          icon={faStickyNote}
+          onClick={e => {
+            e.preventDefault();
+            onChange(editor.insertNote());
           }}
         />
       </BlockButton>

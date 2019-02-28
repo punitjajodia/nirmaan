@@ -15,6 +15,7 @@ import { listPlugin } from "./plugins/listPlugin";
 import Viewer from "./Viewer";
 import styled from "styled-components";
 import { alignPlugin } from "./plugins/alignPlugin";
+import { notePlugin } from "./plugins/notePlugin";
 
 const initialValue = Value.fromJSON({
   document: {
@@ -63,6 +64,7 @@ const plugins = [
   }),
   DeepTable(),
   listPlugin(),
+  notePlugin(),
   alignPlugin(),
   codeNodePlugin()
 ];
