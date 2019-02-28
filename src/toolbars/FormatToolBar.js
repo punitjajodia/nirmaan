@@ -3,9 +3,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBold,
   faItalic,
-  faParagraph,
-  faHeading,
-  faCode
+  faCode,
+  faAlignCenter,
+  faAlignLeft,
+  faAlignRight
 } from "@fortawesome/free-solid-svg-icons";
 import styled from "styled-components";
 import { InlineButton } from "../components/Buttons";
@@ -37,6 +38,32 @@ export const FormatToolbar = props => {
           icon={faCode}
           onClick={() => {
             editor.toggleMark("code");
+            editor.focus();
+          }}
+        />
+      </InlineButton>
+      <InlineButton className="tooltip-icon-button">
+        <FontAwesomeIcon
+          icon={faAlignLeft}
+          onClick={() => {
+            editor.alignLeft();
+            editor.focus();
+          }}
+        />
+      </InlineButton>
+      <InlineButton className="tooltip-icon-button">
+        <FontAwesomeIcon
+          icon={faAlignCenter}
+          onClick={() => {
+            editor.alignCenter();
+          }}
+        />
+      </InlineButton>
+      <InlineButton className="tooltip-icon-button">
+        <FontAwesomeIcon
+          icon={faAlignRight}
+          onClick={() => {
+            editor.alignRight();
             editor.focus();
           }}
         />

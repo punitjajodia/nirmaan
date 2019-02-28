@@ -4,7 +4,7 @@ import Html from "slate-html-serializer";
 const rules = [
   {
     serialize: (obj, children) => {
-      if (obj.object == "block") {
+      if (obj.object === "block") {
         switch (obj.type) {
           case "code":
             return (
@@ -25,7 +25,7 @@ const rules = [
               </pre>
             );
           case "image":
-            return <img src={obj.data.get("src")} />;
+            return <img alt="" src={obj.data.get("src")} />;
           case "paragraph":
             return <p>{children}</p>;
           case "heading-1":
@@ -52,7 +52,7 @@ const rules = [
   },
   {
     serialize: (obj, children) => {
-      if (obj.object == "mark") {
+      if (obj.object === "mark") {
         switch (obj.type) {
           case "bold":
             return <strong>{children}</strong>;
@@ -60,6 +60,8 @@ const rules = [
             return <em>{children}</em>;
           case "code":
             return <code>{children}</code>;
+          default:
+            return;
         }
       }
     }

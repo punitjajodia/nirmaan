@@ -24,17 +24,17 @@ export const listPlugin = options => {
     },
     queries: {
       isList: editor => {
-        return editor.value.blocks.some(node => node.type == "list-item");
+        return editor.value.blocks.some(node => node.type === "list-item");
       },
       isParagraph: editor => {
-        return editor.value.blocks.some(node => node.type == "paragraph");
+        return editor.value.blocks.some(node => node.type === "paragraph");
       },
       isBlockEmpty: editor => {
         return editor.value.endText && editor.value.endText.text === "";
       }
     },
     renderNode: (props, editor, next) => {
-      const { attributes, node, children, isFocused } = props;
+      const { attributes, node, children } = props;
       switch (node.type) {
         case "ul-list":
           return <ul {...attributes}>{children}</ul>;

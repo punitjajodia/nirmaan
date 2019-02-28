@@ -3,21 +3,18 @@ import "./App.css";
 import { Editor } from "slate-react";
 import { Value, Block } from "slate";
 import { BoldMark } from "./marks/BoldMark";
-import { boldPlugin } from "./plugins/boldPlugin";
 import { CodeMark } from "./marks/CodeMark";
-import { codeNodePlugin, codeMarkPlugin } from "./plugins/codePlugin";
+import { codeNodePlugin } from "./plugins/codePlugin";
 import { FormatToolbar } from "./toolbars/FormatToolBar";
 import { ItalicMark } from "./marks/ItalicMark";
 import { BlocksToolbar } from "./toolbars/BlocksToolbar";
 import { ImageNode } from "./nodes/ImageNode";
 import SoftBreak from "slate-soft-break";
-import EditList from "slate-edit-list";
-
 import DeepTable from "slate-deep-table";
 import { listPlugin } from "./plugins/listPlugin";
-import { ExportToolbar } from "./toolbars/ExportToolbar";
 import Viewer from "./Viewer";
 import styled from "styled-components";
+import { alignPlugin } from "./plugins/alignPlugin";
 
 const initialValue = Value.fromJSON({
   document: {
@@ -66,6 +63,7 @@ const plugins = [
   }),
   DeepTable(),
   listPlugin(),
+  alignPlugin(),
   codeNodePlugin()
 ];
 
@@ -97,15 +95,36 @@ class App extends Component {
   };
   renderNode = (props, editor, next) => {
     const { attributes, node, children, isFocused } = props;
+    const align = node.data.get("align");
+    const style = align
+      ? {
+          textAlign: align
+        }
+      : {};
+
     switch (node.type) {
       case "image":
         const src = node.data.get("src");
         console.log("Image source is ", src);
         return <ImageNode src={src} selected={isFocused} {...attributes} />;
       case "heading-1":
-        return <h1 {...attributes}>{children}</h1>;
+        return (
+          <h1 {...attributes} style={style}>
+            {children}
+          </h1>
+        );
       case "heading-2":
-        return <h2 {...attributes}>{children}</h2>;
+        return (
+          <h2 {...attributes} style={style}>
+            {children}
+          </h2>
+        );
+      case "paragraph":
+        return (
+          <p {...attributes} style={style}>
+            {children}
+          </p>
+        );
       default:
         return next();
     }

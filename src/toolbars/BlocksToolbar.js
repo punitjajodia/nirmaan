@@ -14,7 +14,7 @@ import {
 import { BlockButton, PrimaryButton } from "../components/Buttons";
 import styled from "styled-components";
 import Popup from "reactjs-popup";
-import { Input, InlineInput, InlineForm } from "../components/FormElements";
+import { Input, InlineForm } from "../components/FormElements";
 
 export const BlocksToolbar = props => {
   const { editor, onChange } = props;
@@ -46,7 +46,7 @@ export const BlocksToolbar = props => {
       >
         <FontAwesomeIcon icon={faCode} />
       </BlockButton>
-      {/* <BlockButton
+      <BlockButton
         onClick={() => {
           if (editor.isBlockEmpty()) {
             editor.setBlocks("nonexecutable-code");
@@ -74,12 +74,15 @@ export const BlocksToolbar = props => {
         }}
       >
         <FontAwesomeIcon icon={faChevronCircleRight} />
-      </BlockButton> */}
+      </BlockButton>
       <BlockButton
         onClick={() => {
           editor.setBlocks("heading-1");
           !editor.isBlockEmpty() &&
-            editor.insertBlock("paragraph").unwrapList();
+            editor
+              .moveToEndOfBlock()
+              .insertBlock("paragraph")
+              .unwrapList();
           editor.focus();
         }}
       >
@@ -89,7 +92,10 @@ export const BlocksToolbar = props => {
         onClick={() => {
           editor.setBlocks("heading-2");
           !editor.isBlockEmpty() &&
-            editor.insertBlock("paragraph").unwrapList();
+            editor
+              .moveToEndOfBlock()
+              .insertBlock("paragraph")
+              .unwrapList();
           editor.focus();
         }}
       >
