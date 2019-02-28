@@ -56,6 +56,7 @@ export const FormatToolbar = props => {
           icon={faAlignCenter}
           onClick={() => {
             editor.alignCenter();
+            editor.focus();
           }}
         />
       </InlineButton>
