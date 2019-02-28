@@ -130,6 +130,19 @@ class App extends Component {
     }
   };
 
+  renderEditor = (props, editor, next) => {
+    const children = next();
+    const wordCount = props.value.document
+      .getBlocks()
+      .reduce((memo, b) => memo + b.text.trim().split(/\s+/).length, 0);
+    return (
+      <div>
+        <div>{children}</div>
+        <WordCounter>Word Count: {wordCount}</WordCounter>
+      </div>
+    );
+  };
+
   render() {
     return (
       <div className="App">
@@ -142,6 +155,7 @@ class App extends Component {
             onChange={this.onChange}
             renderMark={this.renderMark}
             renderNode={this.renderNode}
+            renderEditor={this.renderEditor}
             schema={schema}
             ref={editor => (this.editor = editor)}
           />
@@ -156,6 +170,13 @@ const Layout = styled.div`
   display: grid;
   grid-template-columns: 50% 50%;
   grid-column-gap: 50px;
+`;
+
+const WordCounter = styled("span")`
+  margin-top: 10px;
+  padding: 12px;
+  background-color: #ebebeb;
+  display: inline-block;
 `;
 
 export default App;
