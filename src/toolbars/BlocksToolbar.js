@@ -173,6 +173,9 @@ export const BlocksToolbar = props => {
           <button onClick={() => onChange(editor.removeColumn())}>
             Delete Column
           </button>
+          <button onClick={() => onChange(editor.toggleTableHeaders())}>
+            Toggle header
+          </button>
         </>
       )}
     </BlocksToolbarWrapper>

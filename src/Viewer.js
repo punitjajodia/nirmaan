@@ -36,6 +36,8 @@ const Viewer = props => {
 
 const ViewerWrapper = styled.div`
   padding: 10px;
+  max-width: 100%;
+  overflow-x: auto;
 `;
 
 export default Viewer;
