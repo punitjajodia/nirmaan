@@ -38,7 +38,6 @@ export const ExportToolbar = props => {
 };
 
 const ExportToolbarWrapper = styled.div`
-  display: absolute;
   top: 0;
   right: 0;
 `;

@@ -16,6 +16,7 @@ import Viewer from "./Viewer";
 import styled from "styled-components";
 import { alignPlugin } from "./plugins/alignPlugin";
 import { notePlugin } from "./plugins/notePlugin";
+import { DataToolbar } from "./toolbars/DataToolbar";
 
 const initialValue = Value.fromJSON({
   document: {
@@ -150,6 +151,7 @@ class App extends Component {
       <div className="App">
         <ToolbarLayout>
           <FormatToolbar editor={this.editor} />
+          <DataToolbar editor={this.editor} onChange={this.onChange} />
         </ToolbarLayout>
 
         <Layout>
@@ -173,10 +175,11 @@ class App extends Component {
 
 const ToolbarLayout = styled.div`
   width: 100%;
+  max-width: 1000px;
   position: fixed;
   display: grid;
   top: 0;
-  grid-template-columns: 20% 80%;
+  grid-template-columns: auto auto;
   grid-column-gap: 50px;
   background: white;
 `;
