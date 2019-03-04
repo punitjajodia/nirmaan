@@ -10,12 +10,13 @@ import {
   faListOl,
   faCircle,
   faChevronCircleRight,
-  faStickyNote
+  faStickyNote,
+  faDatabase
 } from "@fortawesome/free-solid-svg-icons";
 import { BlockButton, PrimaryButton } from "../components/Buttons";
 import styled from "styled-components";
 import Popup from "reactjs-popup";
-import { Input, InlineForm } from "../components/FormElements";
+import { Input, InlineForm, Textarea, Label } from "../components/FormElements";
 
 export const BlocksToolbar = props => {
   const { editor, onChange } = props;
@@ -147,6 +148,22 @@ export const BlocksToolbar = props => {
           }}
         />
       </BlockButton>
+      <Popup
+        trigger={
+          <BlockButton>
+            <FontAwesomeIcon
+              icon={faDatabase}
+              onClick={e => {
+                e.preventDefault();
+              }}
+            />
+          </BlockButton>
+        }
+        modal
+      >
+        {close => <InsertMetadataPopup {...props} closePopup={close} />}
+      </Popup>
+
       <BlockButton>
         <FontAwesomeIcon
           icon={faTable}
@@ -195,7 +212,7 @@ const InsertImagePopup = props => {
   const [imageUrl, setImageUrl] = useState("https://placekitten.com/200/300");
 
   return (
-    <InsertImagePopupWrapper>
+    <PopupWrapper>
       <InlineForm>
         <Input
           type="text"
@@ -222,12 +239,51 @@ const InsertImagePopup = props => {
           Insert
         </PrimaryButton>
       </InlineForm>
-    </InsertImagePopupWrapper>
+    </PopupWrapper>
   );
 };
 
-const InsertImagePopupWrapper = styled.div`
+const InsertMetadataPopup = props => {
+  const { editor, closePopup } = props;
+
+  const block = editor.value.startBlock;
+
+  const [metaKey, setMetaKey] = useState(block.data.keySeq().first() || "");
+  const [metaValue, setMetaValue] = useState(block.data.first() || "");
+
+  return (
+    <PopupWrapper>
+      <h2>Add metadata</h2>
+
+      <Label>Key</Label>
+      <Input
+        type="text"
+        defaultValue={metaKey}
+        onChange={e => setMetaKey(e.target.value)}
+      />
+      <Label>Value</Label>
+      <Textarea
+        defaultValue={metaValue}
+        onChange={e => setMetaValue(e.target.value)}
+      />
+      <PrimaryButton
+        onClick={e => {
+          e.preventDefault();
+          if (metaKey !== "" && metaValue !== "") {
+            editor.setNodeByKey(block.key, { data: { [metaKey]: metaValue } });
+          }
+          editor.focus();
+          closePopup();
+        }}
+      >
+        Add metadata
+      </PrimaryButton>
+    </PopupWrapper>
+  );
+};
+
+const PopupWrapper = styled.div`
   width: 50%;
   padding: 30px 50px;
-  z-index: 10000;
+  z-index: 100000;
 `;

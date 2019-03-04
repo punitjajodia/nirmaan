@@ -79,5 +79,5 @@ td > p:last-child {
 }
 
 .popup-overlay {
-  z-index: 1001;
+  z-index: 10000000;
 }
