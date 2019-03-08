@@ -25,19 +25,6 @@ export const codeNodePlugin = options => {
         return editor.value.blocks.some(block => isCodeBlock(block));
       }
     },
-    onKeyDown: (event, editor, next) => {
-      if (!event.ctrlKey) return next();
-
-      switch (event.key) {
-        case "`":
-          event.preventDefault();
-          const isCode = editor.isCode();
-          editor.setBlocks(isCode ? "paragraph" : "code");
-          break;
-        default:
-          return next();
-      }
-    },
     onPaste: (event, editor, next) => {
       const { text } = getEventTransfer(event);
       const isCode = editor.isCode();

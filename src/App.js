@@ -96,6 +96,28 @@ class App extends Component {
         return next();
     }
   };
+
+  onKeyDown = (event, editor, next) => {
+    if (!event.ctrlKey) return next();
+
+    switch (event.key) {
+      case "`":
+        event.preventDefault();
+        editor.toggleMark("code");
+        break;
+      case "b":
+        event.preventDefault();
+        editor.toggleMark("bold");
+        break;
+      case "i":
+        event.preventDefault();
+        editor.toggleMark("italic");
+        break;
+      default:
+        return next();
+    }
+  };
+
   renderNode = (props, editor, next) => {
     const { attributes, node, children, isFocused } = props;
     const align = node.data.get("align");
@@ -160,6 +182,7 @@ class App extends Component {
             plugins={plugins}
             value={this.state.value}
             onChange={this.onChange}
+            onKeyDown={this.onKeyDown}
             renderMark={this.renderMark}
             renderNode={this.renderNode}
             renderEditor={this.renderEditor}
