@@ -105,6 +105,10 @@ class App extends Component {
         event.preventDefault();
         editor.toggleMark("code");
         break;
+      case "q":
+        event.preventDefault();
+        editor.toggleMark("code");
+        break;
       case "b":
         event.preventDefault();
         editor.toggleMark("bold");
