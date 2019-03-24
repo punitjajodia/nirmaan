@@ -16,6 +16,7 @@ export const ExportToolbar = props => {
   const { editor, setViewMode, viewMode } = props;
   return (
     <ExportToolbarWrapper>
+      <InlineButton onClick={() => setViewMode("OUTPUT")}>Output</InlineButton>
       <InlineButton onClick={() => setViewMode("HTML")}>HTML</InlineButton>
       <InlineButton
         onClick={() => {
