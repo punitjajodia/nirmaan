@@ -18,26 +18,29 @@ import { alignPlugin } from "./plugins/alignPlugin";
 import { notePlugin } from "./plugins/notePlugin";
 import { DataToolbar } from "./toolbars/DataToolbar";
 
-const initialValue = Value.fromJSON({
-  document: {
-    nodes: [
-      {
-        object: "block",
-        type: "paragraph",
-        nodes: [
-          {
-            object: "text",
-            leaves: [
-              {
-                text: "A line of text in a paragraph."
-              }
-            ]
-          }
-        ]
-      }
-    ]
+const existingValue = JSON.parse(localStorage.getItem("content"));
+const initialValue = Value.fromJSON(
+  existingValue || {
+    document: {
+      nodes: [
+        {
+          object: "block",
+          type: "paragraph",
+          nodes: [
+            {
+              object: "text",
+              leaves: [
+                {
+                  text: "A line of text in a paragraph."
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
   }
-});
+);
 
 const schema = {
   // This section is need for the image upload functionality, if this is not there, then we cannot add anything after an image.
@@ -80,6 +83,9 @@ class App extends Component {
   // On change, update the app's React state with the new editor value.
   onChange = ({ value }) => {
     window.content = value.toJSON();
+
+    const content = JSON.stringify(value.toJSON());
+    localStorage.setItem("content", content);
 
     this.setState({ value });
   };
