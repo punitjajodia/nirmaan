@@ -32,7 +32,7 @@ export const codeNodePlugin = options => {
       if (!isCode) {
         return next();
       }
-      editor.insertText(text.replace("\r\n", "\n"));
+      editor.insertText(text.replace("\r\n", "\n").replace("\r", ""));
     },
     renderNode: (props, editor, next) => {
       switch (props.node.type) {
