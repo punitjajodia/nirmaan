@@ -60,6 +60,20 @@ const rules = [
             return <em>{children}</em>;
           case "code":
             return <code>{children}</code>;
+          case "link":
+            return <a href={obj.data.get("href")}>{children}</a>;
+          default:
+            return;
+        }
+      }
+    }
+  },
+  {
+    serialize: (obj, children) => {
+      if (obj.object === "inline") {
+        switch (obj.type) {
+          case "link":
+            return <a href={obj.data.get("href")}>{children}</a>;
           default:
             return;
         }

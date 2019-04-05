@@ -17,6 +17,7 @@ import { BlockButton, PrimaryButton } from "../components/Buttons";
 import styled from "styled-components";
 import Popup from "reactjs-popup";
 import { Input, InlineForm, Textarea, Label } from "../components/FormElements";
+import { PopupWrapper } from "./Popup";
 
 export const BlocksToolbar = props => {
   const { editor, onChange } = props;
@@ -281,9 +282,3 @@ const InsertMetadataPopup = props => {
     </PopupWrapper>
   );
 };
-
-const PopupWrapper = styled.div`
-  width: 50%;
-  padding: 30px 50px;
-  z-index: 100000;
-`;

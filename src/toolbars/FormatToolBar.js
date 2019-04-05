@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBold,
@@ -6,13 +7,17 @@ import {
   faCode,
   faAlignCenter,
   faAlignLeft,
-  faAlignRight
+  faAlignRight,
+  faLink,
+  faUnlink
 } from "@fortawesome/free-solid-svg-icons";
-import styled from "styled-components";
-import { InlineButton } from "../components/Buttons";
+import { InlineButton, PrimaryButton } from "../components/Buttons";
+import { Input, InlineForm, Textarea, Label } from "../components/FormElements";
+import Popup from "reactjs-popup";
+import { PopupWrapper } from "./Popup";
 
 export const FormatToolbar = props => {
-  const { editor } = props;
+  const { editor, onChange } = props;
   return (
     <FormatToolbarWrapper>
       <InlineButton className="tooltip-icon-button">
@@ -69,7 +74,77 @@ export const FormatToolbar = props => {
           }}
         />
       </InlineButton>
+      {editor &&
+        (editor.hasLinks() ? (
+          <InlineButton className="tooltip-icon-button">
+            <FontAwesomeIcon
+              icon={faUnlink}
+              onClick={() => {
+                editor.unwrapLink();
+              }}
+            />
+          </InlineButton>
+        ) : (
+          <Popup
+            modal
+            trigger={
+              <InlineButton className="tooltip-icon-button">
+                <FontAwesomeIcon icon={faLink} />
+              </InlineButton>
+            }
+          >
+            {close => <InsertLinkPopup {...props} closePopup={close} />}
+          </Popup>
+        ))}
     </FormatToolbarWrapper>
+  );
+};
+
+const InsertLinkPopup = props => {
+  const { editor, closePopup, onChange } = props;
+  const [linkUrl, setLinkUrl] = useState("");
+  const [linkText, setLinkText] = useState("");
+
+  const isCollapsed = editor.value.selection.isCollapsed;
+
+  return (
+    <PopupWrapper>
+      {isCollapsed && (
+        <>
+          <Label>Text</Label>
+          <Input
+            type="text"
+            value={linkText}
+            onChange={e => setLinkText(e.target.value)}
+          />
+        </>
+      )}
+      <Label>Link</Label>
+      <Input
+        type="text"
+        value={linkUrl}
+        onChange={e => setLinkUrl(e.target.value)}
+      />
+      <PrimaryButton
+        onClick={e => {
+          e.preventDefault();
+          const href = linkUrl;
+
+          if (isCollapsed) {
+            editor
+              .insertText(linkText)
+              .moveFocusBackward(linkText.length)
+              .wrapLink(href)
+              .focus();
+          } else {
+            editor.wrapLink(href);
+          }
+          closePopup();
+        }}
+      >
+        Insert
+      </PrimaryButton>
+    </PopupWrapper>
   );
 };
 

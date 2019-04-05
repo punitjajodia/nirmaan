@@ -17,6 +17,7 @@ import styled from "styled-components";
 import { alignPlugin } from "./plugins/alignPlugin";
 import { notePlugin } from "./plugins/notePlugin";
 import { DataToolbar } from "./toolbars/DataToolbar";
+import { linkPlugin } from "./plugins/linkPlugin";
 
 const existingValue = JSON.parse(localStorage.getItem("content"));
 const initialValue = Value.fromJSON(
@@ -70,7 +71,8 @@ const plugins = [
   listPlugin(),
   notePlugin(),
   alignPlugin(),
-  codeNodePlugin()
+  codeNodePlugin(),
+  linkPlugin()
 ];
 
 class App extends Component {
@@ -182,7 +184,7 @@ class App extends Component {
     return (
       <div className="App">
         <ToolbarLayout>
-          <FormatToolbar editor={this.editor} />
+          <FormatToolbar editor={this.editor} onChange={this.onChange} />
           <DataToolbar editor={this.editor} onChange={this.onChange} />
         </ToolbarLayout>
 
