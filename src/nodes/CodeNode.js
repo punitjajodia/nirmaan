@@ -47,10 +47,3 @@ const Pre = styled.pre`
     right: 2px;
   }
 `;
-
-const AddMetadataButton = styled.div`
-  position: absolute;
-  top: 0;
-  right: -20px;
-  cursor: pointer;
-`;
