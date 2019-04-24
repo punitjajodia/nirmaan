@@ -1,9 +1,11 @@
 import React from "react";
+import styled from "styled-components";
 import { MarkHotKey } from "../marks/HotKeys";
 import { CodeNode } from "../nodes/CodeNode";
 import { NonExecutableCodeNode } from "../nodes/NonExecutableCodeNode";
 import { SampleOutput } from "../nodes/SampleOutput";
 import { getEventTransfer } from "slate-react";
+import { PreNode } from "../nodes/PreNode";
 
 export const codeMarkPlugin = MarkHotKey({
   type: "code",
@@ -43,6 +45,8 @@ export const codeNodePlugin = options => {
           return <NonExecutableCodeNode {...props} />;
         case "sample-output":
           return <SampleOutput {...props} />;
+        case "pre":
+          return <PreNode {...props} />;
         default:
           return next();
       }

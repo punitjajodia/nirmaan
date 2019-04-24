@@ -46,6 +46,10 @@ const rules = [
             return <tr>{children}</tr>;
           case "table_cell":
             return <td>{children}</td>;
+          case "pre":
+            return <pre>{children}</pre>;
+          case "hr":
+            return <hr />;
           default:
             return <p>{children}</p>;
         }
@@ -124,9 +128,17 @@ const rules = [
           nodes: next(el.childNodes)
         };
       }
+      if (tag === "hr") {
+        return {
+          object: "block",
+          type: "hr"
+        };
+      }
       if (tag === "pre") {
         const childOfPre = el.childNodes[0];
         if (
+          childOfPre &&
+          childOfPre.tagName &&
           childOfPre.tagName.toLowerCase() === "code" &&
           childOfPre.classList.contains("exec")
         ) {
@@ -138,6 +150,8 @@ const rules = [
         }
 
         if (
+          childOfPre &&
+          childOfPre.tagName &&
           childOfPre.tagName.toLowerCase() === "code" &&
           !childOfPre.classList.contains("exec")
         ) {
@@ -148,13 +162,22 @@ const rules = [
           };
         }
 
-        if (childOfPre.tagName.toLowerCase() === "samp") {
+        if (
+          childOfPre &&
+          childOfPre.tagName &&
+          childOfPre.tagName.toLowerCase() === "samp"
+        ) {
           return {
             object: "block",
             type: "sample-output",
             nodes: next(childOfPre.childNodes)
           };
         }
+        return {
+          object: "block",
+          type: "pre",
+          nodes: next(el.childNodes)
+        };
       }
 
       if (tag === "img") {

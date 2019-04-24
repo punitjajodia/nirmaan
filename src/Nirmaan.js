@@ -38,6 +38,9 @@ const schema = {
   blocks: {
     image: {
       isVoid: true
+    },
+    hr: {
+      isVoid: true
     }
   }
 };
@@ -167,6 +170,8 @@ class Nirmaan extends Component {
             {children}
           </p>
         );
+      case "hr":
+        return <hr {...attributes} />;
       default:
         return next();
     }

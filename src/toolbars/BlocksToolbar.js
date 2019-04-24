@@ -37,6 +37,14 @@ export const BlocksToolbar = props => {
         <FontAwesomeIcon icon={faParagraph} />
       </BlockButton>
       <BlockButton
+        onClick={e => {
+          e.preventDefault();
+          editor.insertBlock("hr");
+        }}
+      >
+        __
+      </BlockButton>
+      <BlockButton
         onClick={() => {
           if (editor.isBlockEmpty()) {
             editor.setBlocks("code");
@@ -139,6 +147,16 @@ export const BlocksToolbar = props => {
             }
           }}
         />
+      </BlockButton>
+      <BlockButton>
+        <div
+          onClick={e => {
+            e.preventDefault();
+            onChange(editor.insertBlock("pre"));
+          }}
+        >
+          pre
+        </div>
       </BlockButton>
       <BlockButton>
         <FontAwesomeIcon

@@ -65,9 +65,7 @@ export const DataToolbar = props => {
               <PasteArea
                 rows={20}
                 onChange={e => {
-                  const html = e.target.value
-                    .replace(/\r?\n|\r/g, "")
-                    .replace(/>\s+</g, "><");
+                  const html = e.target.value.replace(/>\s+</g, "><");
 
                   setImportHtml(html);
                 }}
