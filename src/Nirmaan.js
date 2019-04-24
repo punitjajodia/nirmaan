@@ -3,7 +3,7 @@ import "./App.css";
 import { Editor } from "slate-react";
 import { Value, Block } from "slate";
 import { BoldMark } from "./marks/BoldMark";
-import { CodeMark } from "./marks/CodeMark";
+import { CodeMark, SampMark, VarMark } from "./marks/CodeMark";
 import { codeNodePlugin } from "./plugins/codePlugin";
 import { FormatToolbar } from "./toolbars/FormatToolBar";
 import { ItalicMark } from "./marks/ItalicMark";
@@ -108,6 +108,10 @@ class Nirmaan extends Component {
         return <ItalicMark {...props} {...props.attributes} />;
       case "code":
         return <CodeMark {...props} {...props.attributes} />;
+      case "samp":
+        return <SampMark {...props} {...props.attributes} />;
+      case "var":
+        return <VarMark {...props} {...props.attributes} />;
       default:
         return next();
     }

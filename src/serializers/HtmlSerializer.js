@@ -202,6 +202,10 @@ const rules = [
             return <em>{children}</em>;
           case "code":
             return <code>{children}</code>;
+          case "var":
+            return <var>{children}</var>;
+          case "samp":
+            return <samp>{children}</samp>;
           default:
             return;
         }
@@ -223,10 +227,24 @@ const rules = [
           nodes: next(el.childNodes)
         };
       }
+      if (tag === "var") {
+        return {
+          object: "mark",
+          type: "var",
+          nodes: next(el.childNodes)
+        };
+      }
       if (tag === "code" && el.parentNode.tagName.toLowerCase() !== "pre") {
         return {
           object: "mark",
           type: "code",
+          nodes: next(el.childNodes)
+        };
+      }
+      if (tag === "samp" && el.parentNode.tagName.toLowerCase() !== "pre") {
+        return {
+          object: "mark",
+          type: "samp",
           nodes: next(el.childNodes)
         };
       }

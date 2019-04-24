@@ -48,6 +48,26 @@ export const FormatToolbar = props => {
         />
       </InlineButton>
       <InlineButton className="tooltip-icon-button">
+        <div
+          onClick={() => {
+            editor.toggleMark("samp");
+            editor.focus();
+          }}
+        >
+          samp
+        </div>
+      </InlineButton>
+      <InlineButton className="tooltip-icon-button">
+        <div
+          onClick={() => {
+            editor.toggleMark("var");
+            editor.focus();
+          }}
+        >
+          var
+        </div>
+      </InlineButton>
+      <InlineButton className="tooltip-icon-button">
         <FontAwesomeIcon
           icon={faAlignLeft}
           onClick={() => {
