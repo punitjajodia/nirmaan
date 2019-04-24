@@ -242,7 +242,7 @@ const Layout = styled.div`
   margin-top: 50px;
   display: grid;
 
-  grid-column-gap: 50px;
+  grid-column-gap: 75px;
 
   @media (min-width: 720px) {
     grid-template-columns: 50% 50%;
