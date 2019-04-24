@@ -41,7 +41,7 @@ export const listPlugin = options => {
         case "ol-list":
           return <ol {...attributes}>{children}</ol>;
         case "list-item":
-          return <li {...props.attributes}>{children}</li>;
+          return <li {...attributes}>{children}</li>;
         default:
           return next();
       }

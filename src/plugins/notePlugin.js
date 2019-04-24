@@ -5,7 +5,6 @@ export const notePlugin = options => {
   return {
     commands: {
       insertNote: editor => {
-        console.log("Inserting note");
         editor.insertBlock("note").unwrapList();
       }
     },
@@ -21,7 +20,6 @@ export const notePlugin = options => {
 
       switch (node.type) {
         case "note":
-          console.log("Rendering a note");
           return <NoteNode {...props} style={style} />;
         default:
           return next();
