@@ -19,6 +19,7 @@ import { notePlugin } from "./plugins/notePlugin";
 import { DataToolbar } from "./toolbars/DataToolbar";
 import { linkPlugin } from "./plugins/linkPlugin";
 import { pasteHtmlPlugin } from "./plugins/pasteHtmlPlugin";
+import { SubMark, SupMark } from "./marks/SubSupMark";
 
 const existingValue = JSON.parse(localStorage.getItem("content"));
 
@@ -112,6 +113,10 @@ class Nirmaan extends Component {
         return <SampMark {...props} {...props.attributes} />;
       case "var":
         return <VarMark {...props} {...props.attributes} />;
+      case "sub":
+        return <SubMark {...props} {...props.attributes} />;
+      case "sup":
+        return <SupMark {...props} {...props.attributes} />;
       default:
         return next();
     }

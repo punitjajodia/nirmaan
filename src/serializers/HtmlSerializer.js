@@ -206,6 +206,10 @@ const rules = [
             return <var>{children}</var>;
           case "samp":
             return <samp>{children}</samp>;
+          case "sup":
+            return <sup>{children}</sup>;
+          case "sub":
+            return <sub>{children}</sub>;
           default:
             return;
         }
@@ -231,6 +235,20 @@ const rules = [
         return {
           object: "mark",
           type: "var",
+          nodes: next(el.childNodes)
+        };
+      }
+      if (tag === "sub") {
+        return {
+          object: "mark",
+          type: "sub",
+          nodes: next(el.childNodes)
+        };
+      }
+      if (tag === "sup") {
+        return {
+          object: "mark",
+          type: "sup",
           nodes: next(el.childNodes)
         };
       }

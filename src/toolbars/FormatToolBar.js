@@ -94,6 +94,26 @@ export const FormatToolbar = props => {
           }}
         />
       </InlineButton>
+      <InlineButton className="tooltip-icon-button">
+        <div
+          onClick={() => {
+            editor.toggleMark("sup");
+            editor.focus();
+          }}
+        >
+          sup
+        </div>
+      </InlineButton>
+      <InlineButton className="tooltip-icon-button">
+        <div
+          onClick={() => {
+            editor.toggleMark("sub");
+            editor.focus();
+          }}
+        >
+          sub
+        </div>
+      </InlineButton>
       {editor &&
         (editor.hasLinks() ? (
           <InlineButton className="tooltip-icon-button">
