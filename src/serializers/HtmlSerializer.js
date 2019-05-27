@@ -1,6 +1,27 @@
 import React from "react";
 import Html from "slate-html-serializer";
 
+const isIterable = obj => {
+  if (obj == null) {
+    return false;
+  }
+  return typeof obj[Symbol.iterator] === "function";
+};
+
+const renderChildrenWithLineBreaks = obj => {
+  if (isIterable(obj) && typeof obj !== "string") {
+    return obj.map(o => renderChildrenWithLineBreaks(o));
+  }
+  if (typeof obj === "string") {
+    return obj.split("\n").reduce((array, text, i) => {
+      if (i !== 0) array.push(<br key={i} />);
+      array.push(text);
+      return array;
+    }, []);
+  }
+  return obj;
+};
+
 const rules = [
   {
     serialize: (obj, children) => {
@@ -27,21 +48,7 @@ const rules = [
           case "image":
             return <img alt="" src={obj.data.get("src")} />;
           case "paragraph":
-            return (
-              <p>
-                {children.map(child => {
-                  const c = child.get(0);
-                  if (typeof c === "string") {
-                    return c.split("\n").reduce((array, text, i) => {
-                      if (i !== 0) array.push(<br key={i} />);
-                      array.push(text);
-                      return array;
-                    }, []);
-                  }
-                  return child;
-                })}
-              </p>
-            );
+            return <p>{renderChildrenWithLineBreaks(children)}</p>;
           case "heading-1":
             return <h1>{children}</h1>;
           case "heading-2":
@@ -53,21 +60,7 @@ const rules = [
           case "ol-list":
             return <ol>{children}</ol>;
           case "list-item":
-            return (
-              <li>
-                {children.map(child => {
-                  const c = child.get(0);
-                  if (typeof c === "string") {
-                    return c.split("\n").reduce((array, text, i) => {
-                      if (i !== 0) array.push(<br key={i} />);
-                      array.push(text);
-                      return array;
-                    }, []);
-                  }
-                  return child;
-                })}
-              </li>
-            );
+            return <li>{renderChildrenWithLineBreaks(children)}</li>;
           case "table":
             return <table>{children}</table>;
           case "table_row":
@@ -322,8 +315,6 @@ const rules = [
     }
   },
   {
-    // This last rule is needed to stop slate from putting <br/> tags after every soft break
-    // Slate's html serializer adds this by default. https://docs.slatejs.org/other-packages/index
     serialize(obj, children) {
       if (obj.object === "string") {
         return children;
