@@ -25,7 +25,7 @@ export const viewerContent = (editor, viewMode) => {
 };
 
 export const viewerRender = (editor, viewMode) => {
-  if (viewMode == "OUTPUT") {
+  if (viewMode === "OUTPUT") {
     return viewerContent(editor, viewMode);
   } else {
     return <pre>{viewerContent(editor, viewMode)}</pre>;

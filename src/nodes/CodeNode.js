@@ -1,10 +1,6 @@
 import React from "react";
-import { useState } from "react";
 import styled from "styled-components";
 import { fontFamilies } from "../styles/fonts";
-import Popup from "reactjs-popup";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
 
 export const CodeNode = props => {
   const output = props.node.data.get("output") ? (
@@ -31,12 +27,13 @@ const CodeOutput = styled.pre`
   background: #eee;
   font-family: ${fontFamilies.MONOSPACE};
   padding: 10px;
+  z-index: -1;
 `;
 
 const Pre = styled.pre`
   background: #eee;
   position: relative;
-  z-index: -10;
+  z-index: -1;
 
   &:after {
     content: "Executable Code";

@@ -15,6 +15,7 @@ const Samp = styled.samp``;
 const Pre = styled.pre`
   background: #eee;
   position: relative;
+  z-index: -1;
 
   &:after {
     content: "Sample Output";

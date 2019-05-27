@@ -4,7 +4,7 @@ import { Editor } from "slate-react";
 import { Value, Block } from "slate";
 
 import { CodeMark, SampMark, VarMark } from "./marks/CodeMark";
-import { codeNodePlugin, isCodeBlock } from "./plugins/codePlugin";
+import { codeNodePlugin } from "./plugins/codePlugin";
 import { FormatToolbar } from "./toolbars/FormatToolBar";
 import { BlocksToolbar } from "./toolbars/BlocksToolbar";
 import { ImageNode } from "./nodes/ImageNode";
@@ -32,6 +32,8 @@ const schema = {
           const paragraph = Block.create("paragraph");
           return editor.insertNodeByKey(node.key, node.nodes.size, paragraph);
         }
+        default:
+          return;
       }
     }
   },

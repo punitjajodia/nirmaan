@@ -13,12 +13,12 @@ import {
   faUnderline
 } from "@fortawesome/free-solid-svg-icons";
 import { InlineButton, PrimaryButton } from "../components/Buttons";
-import { Input, InlineForm, Textarea, Label } from "../components/FormElements";
+import { Input, Label } from "../components/FormElements";
 import Popup from "reactjs-popup";
 import { PopupWrapper } from "./Popup";
 
 export const FormatToolbar = props => {
-  const { editor, onChange } = props;
+  const { editor } = props;
   return (
     <FormatToolbarWrapper>
       <InlineButton className="tooltip-icon-button">
@@ -151,7 +151,7 @@ export const FormatToolbar = props => {
 };
 
 const InsertLinkPopup = props => {
-  const { editor, closePopup, onChange } = props;
+  const { editor, closePopup } = props;
   const [linkUrl, setLinkUrl] = useState("");
   const [linkText, setLinkText] = useState("");
 

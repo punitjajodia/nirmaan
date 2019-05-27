@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { MarkHotKey } from "../marks/HotKeys";
 import { CodeNode } from "../nodes/CodeNode";
 import { NonExecutableCodeNode } from "../nodes/NonExecutableCodeNode";

@@ -7,7 +7,7 @@ import { PrimaryButton } from "../components/Buttons";
 import htmlSerializer from "../serializers/HtmlSerializer";
 
 export const DataToolbar = props => {
-  const { editor, onChange } = props;
+  const { onChange } = props;
   const [editorJson, setEditorJson] = useState({});
   const [importHtml, setImportHtml] = useState("<p></p>");
   return (

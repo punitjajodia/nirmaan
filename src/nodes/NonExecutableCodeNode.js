@@ -15,6 +15,7 @@ const Code = styled.code``;
 const Pre = styled.pre`
   background: #eee;
   position: relative;
+  z-index: -1;
 
   &:after {
     content: "Non Executable Code";
