@@ -39,6 +39,15 @@ export const BlocksToolbar = props => {
       <BlockButton
         onClick={e => {
           e.preventDefault();
+          editor.insertText("\n");
+          editor.focus();
+        }}
+      >
+        &lt;br&gt;
+      </BlockButton>
+      <BlockButton
+        onClick={e => {
+          e.preventDefault();
           editor.insertBlock("hr");
         }}
       >
