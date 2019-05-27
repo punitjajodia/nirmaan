@@ -9,7 +9,8 @@ import {
   faAlignLeft,
   faAlignRight,
   faLink,
-  faUnlink
+  faUnlink,
+  faUnderline
 } from "@fortawesome/free-solid-svg-icons";
 import { InlineButton, PrimaryButton } from "../components/Buttons";
 import { Input, InlineForm, Textarea, Label } from "../components/FormElements";
@@ -34,6 +35,15 @@ export const FormatToolbar = props => {
           icon={faItalic}
           onClick={() => {
             editor.toggleMark("italic");
+            editor.focus();
+          }}
+        />
+      </InlineButton>
+      <InlineButton className="tooltip-icon-button">
+        <FontAwesomeIcon
+          icon={faUnderline}
+          onClick={() => {
+            editor.toggleMark("underline");
             editor.focus();
           }}
         />

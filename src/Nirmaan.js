@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import "./App.css";
 import { Editor } from "slate-react";
 import { Value, Block } from "slate";
-import { BoldMark } from "./marks/BoldMark";
+
 import { CodeMark, SampMark, VarMark } from "./marks/CodeMark";
 import { codeNodePlugin, isCodeBlock } from "./plugins/codePlugin";
 import { FormatToolbar } from "./toolbars/FormatToolBar";
-import { ItalicMark } from "./marks/ItalicMark";
 import { BlocksToolbar } from "./toolbars/BlocksToolbar";
 import { ImageNode } from "./nodes/ImageNode";
 import SoftBreak from "slate-soft-break";
@@ -100,11 +99,14 @@ class Nirmaan extends Component {
   };
 
   renderMark = (props, editor, next) => {
+    const { attributes, children } = props;
     switch (props.mark.type) {
       case "bold":
-        return <BoldMark {...props} {...props.attributes} />;
+        return <strong {...attributes}>{children}</strong>;
+      case "underline":
+        return <u {...attributes}>{children}</u>;
       case "italic":
-        return <ItalicMark {...props} {...props.attributes} />;
+        return <em {...attributes}>{children}</em>;
       case "code":
         return <CodeMark {...props} {...props.attributes} />;
       case "samp":

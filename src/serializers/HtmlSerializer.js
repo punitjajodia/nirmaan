@@ -219,6 +219,8 @@ const rules = [
         switch (obj.type) {
           case "bold":
             return <strong>{children}</strong>;
+          case "underline":
+            return <u>{children}</u>;
           case "italic":
             return <em>{children}</em>;
           case "code":
@@ -242,6 +244,13 @@ const rules = [
         return {
           object: "mark",
           type: "bold",
+          nodes: next(el.childNodes)
+        };
+      }
+      if (tag === "u") {
+        return {
+          object: "mark",
+          type: "underline",
           nodes: next(el.childNodes)
         };
       }
