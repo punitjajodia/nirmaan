@@ -4,7 +4,7 @@ import { Editor } from "slate-react";
 import { Value, Block } from "slate";
 import { BoldMark } from "./marks/BoldMark";
 import { CodeMark, SampMark, VarMark } from "./marks/CodeMark";
-import { codeNodePlugin } from "./plugins/codePlugin";
+import { codeNodePlugin, isCodeBlock } from "./plugins/codePlugin";
 import { FormatToolbar } from "./toolbars/FormatToolBar";
 import { ItalicMark } from "./marks/ItalicMark";
 import { BlocksToolbar } from "./toolbars/BlocksToolbar";
@@ -47,9 +47,7 @@ const schema = {
 };
 
 const plugins = [
-  SoftBreak({
-    shift: true
-  }),
+  SoftBreak({ shift: true }),
   DeepTable(),
   listPlugin(),
   notePlugin(),

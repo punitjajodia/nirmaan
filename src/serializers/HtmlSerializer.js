@@ -27,7 +27,21 @@ const rules = [
           case "image":
             return <img alt="" src={obj.data.get("src")} />;
           case "paragraph":
-            return <p>{children}</p>;
+            return (
+              <p>
+                {children.map(child => {
+                  const c = child.get(0);
+                  if (typeof c === "string") {
+                    return c.split("\n").reduce((array, text, i) => {
+                      if (i !== 0) array.push(<br key={i} />);
+                      array.push(text);
+                      return array;
+                    }, []);
+                  }
+                  return child;
+                })}
+              </p>
+            );
           case "heading-1":
             return <h1>{children}</h1>;
           case "heading-2":
@@ -39,7 +53,21 @@ const rules = [
           case "ol-list":
             return <ol>{children}</ol>;
           case "list-item":
-            return <li>{children}</li>;
+            return (
+              <li>
+                {children.map(child => {
+                  const c = child.get(0);
+                  if (typeof c === "string") {
+                    return c.split("\n").reduce((array, text, i) => {
+                      if (i !== 0) array.push(<br key={i} />);
+                      array.push(text);
+                      return array;
+                    }, []);
+                  }
+                  return child;
+                })}
+              </li>
+            );
           case "table":
             return <table>{children}</table>;
           case "table_row":
@@ -290,6 +318,15 @@ const rules = [
             href: el.getAttribute("href")
           }
         };
+      }
+    }
+  },
+  {
+    // This last rule is needed to stop slate from putting <br/> tags after every soft break
+    // Slate's html serializer adds this by default. https://docs.slatejs.org/other-packages/index
+    serialize(obj, children) {
+      if (obj.object === "string") {
+        return children;
       }
     }
   }

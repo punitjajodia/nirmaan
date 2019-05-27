@@ -47,11 +47,6 @@ export const DataToolbar = props => {
 
                 <PrimaryButton
                   onClick={() => {
-                    const value = htmlSerializer.deserialize(importHtml);
-                    const valueJson = htmlSerializer.deserialize(importHtml, {
-                      toJSON: true
-                    });
-                    console.log("The value is ", valueJson);
                     onChange({
                       value: htmlSerializer.deserialize(importHtml)
                     });

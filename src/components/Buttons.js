@@ -9,11 +9,11 @@ export const Button = styled.button`
 
 export const BlockButton = styled(Button)`
   border: 1px solid #ccc;
-  padding: 10px;
-  margin: 5px;
+  padding: 7px;
+  margin: 3px;
   cursor: pointer;
   outline: none;
-  font-size: 16px;
+  font-size: 13px;
   color: #777;
 `;
 

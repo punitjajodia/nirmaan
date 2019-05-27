@@ -236,7 +236,7 @@ const BlocksToolbarWrapper = styled.div`
   flex-direction: column;
   position: fixed;
   left: 0;
-  top: 10%;
+  top: 4%;
 `;
 
 const InsertImagePopup = props => {
