@@ -173,6 +173,12 @@ class Nirmaan extends Component {
             {children}
           </h2>
         );
+      case "heading-3":
+        return (
+          <h3 {...attributes} style={style}>
+            {children}
+          </h3>
+        );
       case "paragraph":
         return (
           <p {...attributes} style={style}>

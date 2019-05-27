@@ -112,6 +112,19 @@ export const BlocksToolbar = props => {
       >
         <FontAwesomeIcon icon={faHeading} size="sm" />
       </BlockButton>
+      <BlockButton
+        onClick={() => {
+          editor.setBlocks("heading-3");
+          !editor.isBlockEmpty() &&
+            editor
+              .moveToEndOfBlock()
+              .insertBlock("paragraph")
+              .unwrapList();
+          editor.focus();
+        }}
+      >
+        <FontAwesomeIcon icon={faHeading} size="xs" />
+      </BlockButton>
       <Popup
         modal
         trigger={
