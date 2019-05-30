@@ -55,12 +55,7 @@ export const BlocksToolbar = props => {
       </BlockButton>
       <BlockButton
         onClick={() => {
-          if (editor.isBlockEmpty()) {
-            editor.setBlocks("code");
-          } else {
-            editor.insertBlock("code").unwrapList();
-          }
-
+          editor.setBlocks("code");
           editor.focus();
         }}
       >
@@ -68,12 +63,7 @@ export const BlocksToolbar = props => {
       </BlockButton>
       <BlockButton
         onClick={() => {
-          if (editor.isBlockEmpty()) {
-            editor.setBlocks("nonexecutable-code");
-          } else {
-            editor.insertBlock("nonexecutable-code").unwrapList();
-          }
-
+          editor.setBlocks("nonexecutable-code");
           editor.focus();
         }}
       >
