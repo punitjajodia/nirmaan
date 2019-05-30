@@ -25,7 +25,6 @@ const existingValue = JSON.parse(localStorage.getItem("content"));
 const schema = {
   // This section is need for the image upload functionality, if this is not there, then we cannot add anything after an image.
   document: {
-    last: { type: "paragraph" },
     normalize: (editor, { code, node, child }) => {
       switch (code) {
         case "last_child_type_invalid": {
