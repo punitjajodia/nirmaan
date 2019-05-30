@@ -3,6 +3,7 @@ import styled from "styled-components";
 import htmlSerializer from "./serializers/HtmlSerializer";
 import pretty from "pretty";
 import { ExportToolbar } from "./toolbars/ExportToolbar";
+import { html } from "js-beautify";
 
 export const viewerContent = (editor, viewMode) => {
   if (!editor) {
@@ -10,7 +11,22 @@ export const viewerContent = (editor, viewMode) => {
   }
 
   if (viewMode === "HTML") {
-    return pretty(htmlSerializer.serialize(editor.value));
+    const prettyHTML = html(htmlSerializer.serialize(editor.value), {
+      extra_liners: [
+        "p",
+        "img",
+        "h1",
+        "h2",
+        "h3",
+        "pre",
+        "ul",
+        "li",
+        "table",
+        "hr",
+        "div"
+      ]
+    });
+    return prettyHTML;
   } else if (viewMode === "OUTPUT") {
     return (
       <div
@@ -52,8 +68,9 @@ const Viewer = props => {
 
 const ViewerWrapper = styled.div`
   padding: 10px;
-  max-width: 100%;
-  overflow-x: auto;
+
+  max-height: 100vh;
+  overflow: scroll;
 `;
 
 export default Viewer;

@@ -1,8 +1,9 @@
 .App {
-  max-width: 90%;
+  max-width: 85%;
   margin: 0 auto;
   position: relative;
-  padding-left: 70px;
+  padding-left: 40px;
+  padding-right: 20px;
 }
 
 .App-logo {
@@ -79,4 +80,12 @@ td > p:last-child {
 
 .popup-overlay {
   z-index: 10000000;
+}
+
+pre {
+  white-space: pre-wrap; /* css-3 */
+  white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+  white-space: -pre-wrap; /* Opera 4-6 */
+  white-space: -o-pre-wrap; /* Opera 7 */
+  word-wrap: break-word; /* Internet Explorer 5.5+ */
 }

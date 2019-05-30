@@ -8,6 +8,7 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "html-minifier": "^4.0.0",
     "immutable": "^4.0.0-rc.12",
+    "js-beautify": "^1.10.0",
     "pretty": "^2.0.0",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",

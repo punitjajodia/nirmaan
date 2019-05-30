@@ -217,23 +217,31 @@ class Nirmaan extends Component {
 
         <Layout>
           <BlocksToolbar editor={this.editor} onChange={this.onChange} />
-          <Editor
-            plugins={plugins}
-            value={this.state.value}
-            onChange={this.onChange}
-            onKeyDown={this.onKeyDown}
-            renderMark={this.renderMark}
-            renderNode={this.renderNode}
-            renderEditor={this.renderEditor}
-            schema={schema}
-            ref={editor => (this.editor = editor)}
-          />
+          <EditorWrapper>
+            <Editor
+              plugins={plugins}
+              value={this.state.value}
+              onChange={this.onChange}
+              onKeyDown={this.onKeyDown}
+              renderMark={this.renderMark}
+              renderNode={this.renderNode}
+              renderEditor={this.renderEditor}
+              schema={schema}
+              ref={editor => (this.editor = editor)}
+            />
+          </EditorWrapper>
           <Viewer editor={this.editor} />
         </Layout>
       </>
     );
   }
 }
+
+const EditorWrapper = styled.div`
+  max-height: 100vh;
+  overflow: auto;
+  padding-right: 20px;
+`;
 
 const ToolbarLayout = styled.div`
   width: 100%;
@@ -250,7 +258,7 @@ const Layout = styled.div`
   margin-top: 50px;
   display: grid;
 
-  grid-column-gap: 75px;
+  grid-column-gap: 40px;
 
   @media (min-width: 720px) {
     grid-template-columns: 50% 50%;
