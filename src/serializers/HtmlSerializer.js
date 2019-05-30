@@ -1,6 +1,31 @@
 import React from "react";
 import Html from "slate-html-serializer";
 
+const attributes = ["id", "class", "name", "src", "alt"];
+
+const getHtmlAttributesFromSlate = obj => {
+  if (!obj.data) return {};
+  const attrs = obj.data.toJS();
+
+  const htmlAttrs = attributes.reduce((o, attr) => {
+    if (attrs[attr]) {
+      o[attr] = attrs[attr];
+    }
+    return o;
+  }, {});
+  return htmlAttrs;
+};
+
+const getHtmlAttributesFromHtmlElement = el => {
+  const data = attributes.reduce((o, attr) => {
+    if (el.hasAttribute && el.hasAttribute(attr)) {
+      o[attr] = el.getAttribute(attr);
+    }
+    return o;
+  }, {});
+  return data;
+};
+
 const isIterable = obj => {
   if (obj == null) {
     return false;
@@ -26,133 +51,151 @@ const rules = [
   {
     serialize: (obj, children) => {
       if (obj.object === "block") {
+        const htmlAttrs = getHtmlAttributesFromSlate(obj);
+
         switch (obj.type) {
           case "code":
             return (
-              <pre>
-                <code className="exec">{children}</code>
+              <pre {...htmlAttrs} className="exec">
+                <code>{children}</code>
               </pre>
             );
           case "nonexecutable-code":
             return (
-              <pre>
+              <pre {...htmlAttrs}>
                 <code>{children}</code>
               </pre>
             );
           case "sample-output":
             return (
-              <pre>
+              <pre {...htmlAttrs}>
                 <samp>{children}</samp>
               </pre>
             );
           case "image":
-            return <img alt="" src={obj.data.get("src")} />;
+            return <img {...htmlAttrs} />;
           case "paragraph":
-            return <p>{renderChildrenWithLineBreaks(children)}</p>;
+            return (
+              <p {...htmlAttrs}>{renderChildrenWithLineBreaks(children)}</p>
+            );
           case "heading-1":
-            return <h1>{children}</h1>;
+            return <h1 {...htmlAttrs}>{children}</h1>;
           case "heading-2":
-            return <h2>{children}</h2>;
+            return <h2 {...htmlAttrs}>{children}</h2>;
           case "heading-3":
-            return <h3>{children}</h3>;
+            return <h3 {...htmlAttrs}>{children}</h3>;
           case "ul-list":
-            return <ul>{children}</ul>;
+            return <ul {...htmlAttrs}>{children}</ul>;
           case "ol-list":
-            return <ol>{children}</ol>;
+            return <ol {...htmlAttrs}>{children}</ol>;
           case "list-item":
-            return <li>{renderChildrenWithLineBreaks(children)}</li>;
+            return (
+              <li {...htmlAttrs}>{renderChildrenWithLineBreaks(children)}</li>
+            );
           case "table":
-            return <table>{children}</table>;
+            return <table {...htmlAttrs}>{children}</table>;
           case "table_row":
-            return <tr>{children}</tr>;
+            return <tr {...htmlAttrs}>{children}</tr>;
           case "table_cell":
-            return <td>{children}</td>;
+            return <td {...htmlAttrs}>{children}</td>;
           case "pre":
-            return <pre>{children}</pre>;
+            return <pre {...htmlAttrs}>{children}</pre>;
           case "hr":
-            return <hr />;
+            return <hr {...htmlAttrs} />;
           default:
-            return <p>{children}</p>;
+            return <p {...htmlAttrs}>{children}</p>;
         }
       }
     },
     deserialize: (el, next) => {
       const tag = el.tagName.toLowerCase();
+      const data = getHtmlAttributesFromHtmlElement(el);
 
       if (tag === "p") {
         return {
           object: "block",
           type: "paragraph",
-          nodes: next(el.childNodes)
+          nodes: next(el.childNodes),
+          data
         };
       }
       if (tag === "h1") {
         return {
           object: "block",
           type: "heading-1",
-          nodes: next(el.childNodes)
+          nodes: next(el.childNodes),
+          data
         };
       }
       if (tag === "h2") {
         return {
           object: "block",
           type: "heading-2",
-          nodes: next(el.childNodes)
+          nodes: next(el.childNodes),
+          data
         };
       }
       if (tag === "h3") {
         return {
           object: "block",
           type: "heading-3",
-          nodes: next(el.childNodes)
+          nodes: next(el.childNodes),
+          data
         };
       }
       if (tag === "ul") {
         return {
           object: "block",
           type: "ul-list",
-          nodes: next(el.childNodes)
+          nodes: next(el.childNodes),
+          data
         };
       }
       if (tag === "ol") {
         return {
           object: "block",
           type: "ol-list",
-          nodes: next(el.childNodes)
+          nodes: next(el.childNodes),
+          data
         };
       }
       if (tag === "li") {
         return {
           object: "block",
           type: "list-item",
-          nodes: next(el.childNodes)
+          nodes: next(el.childNodes),
+          data
         };
       }
       if (tag === "table") {
         return {
           object: "block",
           type: "table",
-          nodes: next(el.childNodes)
+          nodes: next(el.childNodes),
+          data
         };
       }
       if (tag === "tr") {
         return {
           object: "block",
           type: "table_row",
-          nodes: next(el.childNodes)
+          nodes: next(el.childNodes),
+          data
         };
       }
       if (tag === "td") {
         return {
           object: "block",
           type: "table_cell",
-          nodes: next(el.childNodes)
+          nodes: next(el.childNodes),
+          data
         };
       }
       if (tag === "hr") {
         return {
           object: "block",
-          type: "hr"
+          type: "hr",
+          data
         };
       }
       if (tag === "pre") {
@@ -166,7 +209,8 @@ const rules = [
           return {
             object: "block",
             type: "code",
-            nodes: next(childOfPre.childNodes)
+            nodes: next(childOfPre.childNodes),
+            data
           };
         }
 
@@ -179,7 +223,8 @@ const rules = [
           return {
             object: "block",
             type: "nonexecutable-code",
-            nodes: next(childOfPre.childNodes)
+            nodes: next(childOfPre.childNodes),
+            data
           };
         }
 
@@ -191,13 +236,15 @@ const rules = [
           return {
             object: "block",
             type: "sample-output",
-            nodes: next(childOfPre.childNodes)
+            nodes: next(childOfPre.childNodes),
+            data
           };
         }
         return {
           object: "block",
           type: "pre",
-          nodes: next(el.childNodes)
+          nodes: next(el.childNodes),
+          data
         };
       }
 
@@ -206,9 +253,7 @@ const rules = [
           object: "block",
           type: "image",
           nodes: next(el.childNodes),
-          data: {
-            src: el.getAttribute("src")
-          }
+          data
         };
       }
     }
@@ -300,10 +345,11 @@ const rules = [
   },
   {
     serialize: (obj, children) => {
+      const htmlAttrs = getHtmlAttributesFromSlate(obj);
       if (obj.object === "inline") {
         switch (obj.type) {
           case "link":
-            return <a href={obj.data.get("href")}>{children}</a>;
+            return <a {...htmlAttrs}>{children}</a>;
           default:
             return;
         }
