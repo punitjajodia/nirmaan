@@ -1,7 +1,7 @@
 import React from "react";
 import Html from "slate-html-serializer";
 
-const attributes = ["id", "class", "name", "src", "alt"];
+const attributes = ["id", "class", "name", "src", "alt", "href"];
 
 const getHtmlAttributesFromSlate = obj => {
   if (!obj.data) return {};
