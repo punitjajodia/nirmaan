@@ -250,7 +250,6 @@ const rules = [
         };
       }
       if (tag === "th") {
-        console.log("Found a table cell");
         return {
           object: "block",
           type: "table_cell",
