@@ -249,7 +249,10 @@ class Nirmaan extends Component {
 }
 
 const Div = styled.div`
+  border: 1px dotted red;
   position: relative;
+  padding: 15px 3px 5px;
+  margin-bottom: 2px;
   &::after {
     content: "${props => props.id}";
     position: absolute;
@@ -261,10 +264,6 @@ const Div = styled.div`
 `;
 
 const EditorWrapper = styled.div`
-  & div {
-    border: 1px dashed #eee;
-  }
-
   max-height: 100vh;
   overflow: auto;
   padding-right: 20px;
