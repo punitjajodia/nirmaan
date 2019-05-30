@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "31a078bc72b1f3bf9ab0",
+    "revision": "777fc1d8e2f601445260",
     "url": "/nirmaan/static/css/main.332779e0.chunk.css"
   },
   {
-    "revision": "31a078bc72b1f3bf9ab0",
-    "url": "/nirmaan/static/js/main.31a078bc.chunk.js"
+    "revision": "777fc1d8e2f601445260",
+    "url": "/nirmaan/static/js/main.777fc1d8.chunk.js"
   },
   {
     "revision": "b38b4f674b1a125e6cd7",
@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/nirmaan/static/js/2.99d83bff.chunk.js"
   },
   {
-    "revision": "8ae840b97fb0b5655f71c1de668b575f",
+    "revision": "85232effd9083a9ed5d2309839ad57be",
     "url": "/nirmaan/index.html"
   }
 ];
