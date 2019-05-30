@@ -57,6 +57,32 @@ const renderChildrenWithLineBreaks = obj => {
   return obj;
 };
 
+const renderHeader = obj => {
+  if (isIterable(obj)) {
+    return obj.map(o => renderHeader(o));
+  }
+  if (obj.type === "tr") {
+    return (
+      <thead>
+        <tr>{renderHeader(obj.props.children)}</tr>
+      </thead>
+    );
+  }
+
+  if (obj.type === "td") {
+    return <th>{obj.props.children}</th>;
+  }
+  return obj;
+};
+
+const renderBody = obj => {
+  return <tbody>{obj}</tbody>;
+};
+
+const renderTable = obj => {
+  return [renderHeader(obj.slice(0, 1)), renderBody(obj.slice(1))];
+};
+
 const rules = [
   {
     serialize: (obj, children) => {
@@ -103,11 +129,17 @@ const rules = [
               <li {...htmlAttrs}>{renderChildrenWithLineBreaks(children)}</li>
             );
           case "table":
-            return <table {...htmlAttrs}>{children}</table>;
+            return <table {...htmlAttrs}>{renderTable(children)}</table>;
+          case "table_header":
+            return <thead {...htmlAttrs}>{children}</thead>;
+          case "table_body":
+            return <tbody {...htmlAttrs}>{children}</tbody>;
           case "table_row":
             return <tr {...htmlAttrs}>{children}</tr>;
           case "table_cell":
             return <td {...htmlAttrs}>{children}</td>;
+          case "table_header_cell":
+            return <th {...htmlAttrs}>{children}</th>;
           case "pre":
             return <pre {...htmlAttrs}>{children}</pre>;
           case "hr":
@@ -195,6 +227,12 @@ const rules = [
           data
         };
       }
+      if (tag === "thead") {
+        return;
+      }
+      if (tag === "tbody") {
+        return;
+      }
       if (tag === "tr") {
         return {
           object: "block",
@@ -204,6 +242,15 @@ const rules = [
         };
       }
       if (tag === "td") {
+        return {
+          object: "block",
+          type: "table_cell",
+          nodes: next(el.childNodes),
+          data
+        };
+      }
+      if (tag === "th") {
+        console.log("Found a table cell");
         return {
           object: "block",
           type: "table_cell",
