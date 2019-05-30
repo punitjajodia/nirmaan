@@ -74,12 +74,7 @@ export const BlocksToolbar = props => {
       </BlockButton>
       <BlockButton
         onClick={() => {
-          if (editor.isBlockEmpty()) {
-            editor.setBlocks("sample-output");
-          } else {
-            editor.insertBlock("sample-output").unwrapList();
-          }
-
+          editor.setBlocks("sample-output");
           editor.focus();
         }}
       >
@@ -164,7 +159,7 @@ export const BlocksToolbar = props => {
         <div
           onClick={e => {
             e.preventDefault();
-            onChange(editor.insertBlock("pre"));
+            editor.setBlocks("pre");
           }}
         >
           pre
