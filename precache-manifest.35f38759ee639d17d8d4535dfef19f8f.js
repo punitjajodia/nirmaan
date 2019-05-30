@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/nirmaan/static/js/2.99d83bff.chunk.js"
   },
   {
-    "revision": "85232effd9083a9ed5d2309839ad57be",
+    "revision": "c6b7dfae5f2118b919de838690e641d6",
     "url": "/nirmaan/index.html"
   }
 ];
