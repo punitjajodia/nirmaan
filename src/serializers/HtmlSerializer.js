@@ -112,6 +112,8 @@ const rules = [
             return <pre {...htmlAttrs}>{children}</pre>;
           case "hr":
             return <hr {...htmlAttrs} />;
+          case "div":
+            return <div {...htmlAttrs}>{children}</div>;
           default:
             return <p {...htmlAttrs}>{children}</p>;
         }
@@ -121,6 +123,14 @@ const rules = [
       const tag = el.tagName.toLowerCase();
       const data = getHtmlAttributesFromHtmlElement(el);
 
+      if (tag === "div") {
+        return {
+          object: "block",
+          type: "div",
+          nodes: next(el.childNodes),
+          data
+        };
+      }
       if (tag === "p") {
         return {
           object: "block",

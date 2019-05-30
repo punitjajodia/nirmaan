@@ -191,6 +191,12 @@ class Nirmaan extends Component {
             {children}
           </p>
         );
+      case "div":
+        return (
+          <div {...attributes} style={style}>
+            {children}
+          </div>
+        );
       case "hr":
         return <hr {...attributes} />;
       default:
@@ -242,6 +248,10 @@ class Nirmaan extends Component {
 }
 
 const EditorWrapper = styled.div`
+  & div {
+    border: 1px dashed #eee;
+  }
+
   max-height: 100vh;
   overflow: auto;
   padding-right: 20px;
