@@ -357,14 +357,13 @@ const rules = [
     },
     // Special case for links, to grab their href.
     deserialize: (el, next) => {
+      const data = getHtmlAttributesFromHtmlElement(el);
       if (el.tagName.toLowerCase() === "a") {
         return {
           object: "inline",
           type: "link",
           nodes: next(el.childNodes),
-          data: {
-            href: el.getAttribute("href")
-          }
+          data
         };
       }
     }
