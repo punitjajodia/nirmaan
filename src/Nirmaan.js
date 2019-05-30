@@ -19,6 +19,7 @@ import { DataToolbar } from "./toolbars/DataToolbar";
 import { linkPlugin } from "./plugins/linkPlugin";
 import { pasteHtmlPlugin } from "./plugins/pasteHtmlPlugin";
 import { SubMark, SupMark } from "./marks/SubSupMark";
+import { fontFamilies } from "./styles/fonts";
 
 const existingValue = JSON.parse(localStorage.getItem("content"));
 
@@ -193,9 +194,9 @@ class Nirmaan extends Component {
         );
       case "div":
         return (
-          <div {...attributes} style={style}>
+          <Div {...attributes} style={style} id={node.data.get("id")}>
             {children}
-          </div>
+          </Div>
         );
       case "hr":
         return <hr {...attributes} />;
@@ -246,6 +247,18 @@ class Nirmaan extends Component {
     );
   }
 }
+
+const Div = styled.div`
+  position: relative;
+  &::after {
+    content: "${props => props.id}";
+    position: absolute;
+    top:0;
+    right:0;
+    font-family: ${fontFamilies.MONOSPACE};
+    font-size: 10px;
+  }
+`;
 
 const EditorWrapper = styled.div`
   & div {
