@@ -47,9 +47,7 @@ table {
 }
 
 table tr {
-  border: none;
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
+  border: 1px solid #555;
 }
 
 table thead tr {
@@ -57,7 +55,8 @@ table thead tr {
   font-weight: bold;
 }
 
-table td {
+table td,
+table th {
   border: 1px solid black;
   border-top: none;
   border-bottom: none;
