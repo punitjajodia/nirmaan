@@ -9,6 +9,7 @@ export const Input = styled.input`
   font-family: ${fontFamilies.MONOSPACE};
   outline: none;
   width: 500px;
+  max-width: 90%;
   font-size: 18px;
 `;
 

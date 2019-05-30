@@ -11,9 +11,11 @@ import {
   faCircle,
   faChevronCircleRight,
   faStickyNote,
-  faDatabase
+  faDatabase,
+  faPlus,
+  faCross
 } from "@fortawesome/free-solid-svg-icons";
-import { BlockButton, PrimaryButton } from "../components/Buttons";
+import { BlockButton, PrimaryButton, Button } from "../components/Buttons";
 import styled from "styled-components";
 import Popup from "reactjs-popup";
 import { Input, InlineForm, Textarea, Label } from "../components/FormElements";
@@ -274,36 +276,114 @@ const InsertMetadataPopup = props => {
 
   const block = editor.value.startBlock;
 
-  const [metaKey, setMetaKey] = useState(block.data.keySeq().first() || "");
-  const [metaValue, setMetaValue] = useState(block.data.first() || "");
+  let defaultMeta = Object.entries(block.data.toJS()).map(([key, value]) => {
+    return {
+      key,
+      value
+    };
+  });
+
+  if (defaultMeta.length === 0) defaultMeta = [{ key: "", value: "" }];
+
+  const [meta, setMeta] = useState(defaultMeta);
+
+  const metaInputs = meta.map((m, i) => {
+    return (
+      <MetaDataFormInputWrapper key={i}>
+        <div>
+          <Label>Key</Label>
+          <Input
+            type="text"
+            value={m.key}
+            onChange={e => {
+              const newKey = e.target.value;
+              setMeta(oldMeta => {
+                return [
+                  ...oldMeta.slice(0, i),
+                  {
+                    key: newKey,
+                    value: oldMeta[i].value
+                  },
+                  ...oldMeta.slice(i + 1)
+                ];
+              });
+            }}
+          />
+        </div>
+        <div>
+          <Label>Value</Label>
+          <Input
+            value={m.value}
+            onChange={e => {
+              const newValue = e.target.value;
+              setMeta(oldMeta => {
+                return [
+                  ...oldMeta.slice(0, i),
+                  {
+                    key: oldMeta[i].key,
+                    value: newValue
+                  },
+                  ...oldMeta.slice(i + 1)
+                ];
+              });
+            }}
+          />
+        </div>
+        <div>
+          <CloseButton
+            onClick={() => {
+              setMeta(oldMeta => {
+                return [...oldMeta.slice(0, i), ...oldMeta.slice(i + 1)];
+              });
+            }}
+          >
+            ×
+          </CloseButton>
+        </div>
+      </MetaDataFormInputWrapper>
+    );
+  });
 
   return (
     <PopupWrapper>
-      <h2>Add metadata</h2>
-
-      <Label>Key</Label>
-      <Input
-        type="text"
-        defaultValue={metaKey}
-        onChange={e => setMetaKey(e.target.value)}
-      />
-      <Label>Value</Label>
-      <Textarea
-        defaultValue={metaValue}
-        onChange={e => setMetaValue(e.target.value)}
-      />
+      <h2>Update metadata</h2>
+      {metaInputs}
+      <Button
+        onClick={() => setMeta(meta => [...meta, { key: "", value: "" }])}
+      >
+        <FontAwesomeIcon icon={faPlus} />
+      </Button>
       <PrimaryButton
         onClick={e => {
           e.preventDefault();
-          if (metaKey !== "" && metaValue !== "") {
-            editor.setNodeByKey(block.key, { data: { [metaKey]: metaValue } });
-          }
+          const data = meta.reduce((obj, m) => {
+            obj[m.key] = m.value;
+            return obj;
+          }, {});
+
+          editor.setNodeByKey(block.key, { data });
+
           editor.focus();
           closePopup();
         }}
       >
-        Add metadata
+        Update metadata
       </PrimaryButton>
     </PopupWrapper>
   );
 };
+
+const CloseButton = styled.div`
+  line-height: 100px;
+  font-size: 25px;
+  padding-left: 10px;
+  padding-right: 10px;
+  font-weight: thin;
+  cursor: pointer;
+`;
+
+const MetaDataFormInputWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 45% 45% 10%;
+  width: 100%;
+`;
