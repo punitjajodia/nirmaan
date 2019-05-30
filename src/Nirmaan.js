@@ -160,8 +160,13 @@ class Nirmaan extends Component {
     switch (node.type) {
       case "image":
         const src = node.data.get("src");
-        console.log("Image source is ", src);
-        return <ImageNode src={src} selected={isFocused} {...attributes} />;
+        return (
+          <img
+            src={src}
+            className={isFocused ? "selected" : ""}
+            {...attributes}
+          />
+        );
       case "heading-1":
         return (
           <h1 {...attributes} style={style}>
