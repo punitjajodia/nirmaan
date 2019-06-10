@@ -153,6 +153,7 @@ export const FormatToolbar = props => {
 const InsertLinkPopup = props => {
   const { editor, closePopup } = props;
   const [linkUrl, setLinkUrl] = useState("");
+  const [linkTitle, setLinkTitle] = useState("");
   const [linkText, setLinkText] = useState("");
 
   const isCollapsed = editor.value.selection.isCollapsed;
@@ -175,19 +176,26 @@ const InsertLinkPopup = props => {
         value={linkUrl}
         onChange={e => setLinkUrl(e.target.value)}
       />
+      <Label>Title</Label>
+      <Input
+        type="text"
+        value={linkTitle}
+        onChange={e => setLinkTitle(e.target.value)}
+      />
       <PrimaryButton
         onClick={e => {
           e.preventDefault();
           const href = linkUrl;
+          const title = linkTitle;
 
           if (isCollapsed) {
             editor
               .insertText(linkText)
               .moveFocusBackward(linkText.length)
-              .wrapLink(href)
+              .wrapLink({ href, title })
               .focus();
           } else {
-            editor.wrapLink(href);
+            editor.wrapLink({ href, title });
           }
           closePopup();
         }}

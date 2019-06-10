@@ -238,14 +238,29 @@ const BlocksToolbarWrapper = styled.div`
 const InsertImagePopup = props => {
   const { editor, closePopup } = props;
   const [imageUrl, setImageUrl] = useState("https://placekitten.com/200/300");
+  const [imageTitle, setImageTitle] = useState("");
+  const [imageAlt, setImageAlt] = useState("");
 
   return (
     <PopupWrapper>
-      <InlineForm>
+      <>
+        <Label>Url</Label>
         <Input
           type="text"
           value={imageUrl}
           onChange={e => setImageUrl(e.target.value)}
+        />
+        <Label>Alt</Label>
+        <Input
+          type="text"
+          value={imageAlt}
+          onChange={e => setImageAlt(e.target.value)}
+        />
+        <Label>Title</Label>
+        <Input
+          type="text"
+          value={imageTitle}
+          onChange={e => setImageTitle(e.target.value)}
         />
         <PrimaryButton
           onClick={e => {
@@ -253,7 +268,9 @@ const InsertImagePopup = props => {
             const image = {
               type: "image",
               data: {
-                src: imageUrl
+                src: imageUrl,
+                title: imageTitle,
+                alt: imageAlt
               }
             };
             editor.isBlockEmpty()
@@ -266,7 +283,7 @@ const InsertImagePopup = props => {
         >
           Insert
         </PrimaryButton>
-      </InlineForm>
+      </>
     </PopupWrapper>
   );
 };

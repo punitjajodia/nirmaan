@@ -3,10 +3,10 @@ import React from "react";
 export const linkPlugin = options => {
   return {
     commands: {
-      wrapLink: (editor, href) => {
+      wrapLink: (editor, attrs) => {
         editor.wrapInline({
           type: "link",
-          data: { href }
+          data: attrs
         });
         editor.moveToEnd();
       },
