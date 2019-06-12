@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import htmlSerializer from "./serializers/HtmlSerializer";
 import pretty from "pretty";
 import { ExportToolbar } from "./toolbars/ExportToolbar";
 import { html } from "js-beautify";
+import ContentEditable from "react-contenteditable";
+import { fontFamilies } from "./styles/fonts";
 
 export const viewerContent = (editor, viewMode) => {
   if (!editor) {
@@ -11,7 +13,7 @@ export const viewerContent = (editor, viewMode) => {
   }
 
   if (viewMode === "HTML") {
-    const prettyHTML = html(htmlSerializer.serialize(editor.value), {
+    const prettyHtml = html(htmlSerializer.serialize(editor.value), {
       extra_liners: [
         "p",
         "img",
@@ -26,7 +28,7 @@ export const viewerContent = (editor, viewMode) => {
         "div"
       ]
     });
-    return prettyHTML;
+    return prettyHtml;
   } else if (viewMode === "OUTPUT") {
     return (
       <div
@@ -44,8 +46,65 @@ export const viewerRender = (editor, viewMode) => {
   if (viewMode === "OUTPUT") {
     return viewerContent(editor, viewMode);
   } else {
-    return <pre>{viewerContent(editor, viewMode)}</pre>;
+    return (
+      <HtmlEditor content={viewerContent(editor, viewMode)} editor={editor} />
+    );
   }
+};
+
+const HtmlEditor = props => {
+  const htmlEditorRef = useRef(null);
+  const { content, editor } = props;
+
+  const [editingMode, setEditingMode] = useState(false);
+  const [html, setHtml] = useState("");
+
+  return (
+    <div>
+      {!editingMode && (
+        <button
+          onClick={() => {
+            setEditingMode(true);
+            setHtml(content);
+            htmlEditorRef.current.focus();
+          }}
+        >
+          Edit HTML
+        </button>
+      )}
+      {editingMode && (
+        <button
+          onClick={() => {
+            editor.onChange({
+              value: htmlSerializer.deserialize(html.replace(/>\s+</g, "><"))
+            });
+            setEditingMode(false);
+          }}
+        >
+          Update
+        </button>
+      )}
+      <HtmlEditorTextArea
+        ref={htmlEditorRef}
+        value={editingMode ? html : content}
+        rows={100}
+        onChange={e => setHtml(e.target.value)}
+        onBlur={e => {
+          editor.onChange({
+            value: htmlSerializer.deserialize(
+              e.target.value.replace(/>\s+</g, "><")
+            )
+          });
+          setEditingMode(false);
+        }}
+        onFocus={e => {
+          setEditingMode(true);
+          setHtml(content);
+        }}
+        readOnly={!editingMode}
+      />
+    </div>
+  );
 };
 
 const Viewer = props => {
@@ -71,6 +130,14 @@ const ViewerWrapper = styled.div`
 
   max-height: 100vh;
   overflow: scroll;
+`;
+
+const HtmlEditorTextArea = styled.textarea`
+  width: 100%;
+  outline: none;
+  border: none;
+  font-size: 0.9rem;
+  font-family: ${fontFamilies.MONOSPACE};
 `;
 
 export default Viewer;
