@@ -1,10 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import styled from "styled-components";
 import htmlSerializer from "./serializers/HtmlSerializer";
-import pretty from "pretty";
 import { ExportToolbar } from "./toolbars/ExportToolbar";
 import { html } from "js-beautify";
-import ContentEditable from "react-contenteditable";
 import { fontFamilies } from "./styles/fonts";
 
 export const viewerContent = (editor, viewMode) => {
