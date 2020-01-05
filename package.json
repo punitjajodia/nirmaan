@@ -35,7 +35,7 @@
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
     "netlify": "yarn build && netlify deploy --prod",
-    "prepare": "babel src --out-dir lib --copy-files"
+    "prepare": "npx babel src --out-dir lib --copy-files"
   },
   "eslintConfig": {
     "extends": "react-app"
