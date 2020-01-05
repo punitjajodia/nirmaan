@@ -1,7 +1,7 @@
 {
   "name": "programiz-editor",
   "version": "0.1.0",
-  "main": "build/Nirmaan.js",
+  "main": "lib/Nirmaan.js",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
@@ -34,7 +34,7 @@
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
     "netlify": "yarn build && netlify deploy --prod",
-    "prepare": "babel src -d build"
+    "prepare": "babel src --out-dir lib --source-maps inline --copy-files"
   },
   "eslintConfig": {
     "extends": "react-app"
