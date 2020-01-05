@@ -6,7 +6,7 @@
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
     "@fortawesome/react-fontawesome": "^0.1.4",
-    "babel-core": "^7.0.0-bridge.0",
+    "babel-core": "7.0.0-bridge.0",
     "html-minifier": "^4.0.0",
     "immutable": "^4.0.0-rc.12",
     "js-beautify": "^1.10.0",
@@ -35,7 +35,7 @@
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
     "netlify": "yarn build && netlify deploy --prod",
-    "prepare": "npx babel src --out-dir lib --copy-files"
+    "prepare": "./node_modules/.bin/babel src --out-dir lib --copy-files"
   },
   "eslintConfig": {
     "extends": "react-app"
