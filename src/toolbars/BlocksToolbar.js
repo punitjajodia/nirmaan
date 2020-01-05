@@ -202,7 +202,7 @@ export const BlocksToolbar = props => {
         />
       </BlockButton>
       {editor && editor.isSelectionInTable() && (
-        <>
+        <React.Fragment>
           <button onClick={() => onChange(editor.removeTable())}>
             Delete Table
           </button>
@@ -221,7 +221,7 @@ export const BlocksToolbar = props => {
           <button onClick={() => onChange(editor.toggleTableHeaders())}>
             Toggle header
           </button>
-        </>
+        </React.Fragment>
       )}
     </BlocksToolbarWrapper>
   );
@@ -243,7 +243,7 @@ const InsertImagePopup = props => {
 
   return (
     <PopupWrapper>
-      <>
+      <React.Fragment>
         <Label>Url</Label>
         <Input
           type="text"
@@ -283,7 +283,7 @@ const InsertImagePopup = props => {
         >
           Insert
         </PrimaryButton>
-      </>
+      </React.Fragment>
     </PopupWrapper>
   );
 };

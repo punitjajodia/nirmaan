@@ -161,14 +161,14 @@ const InsertLinkPopup = props => {
   return (
     <PopupWrapper>
       {isCollapsed && (
-        <>
+        <React.Fragment>
           <Label>Text</Label>
           <Input
             type="text"
             value={linkText}
             onChange={e => setLinkText(e.target.value)}
           />
-        </>
+        </React.Fragment>
       )}
       <Label>Link</Label>
       <Input

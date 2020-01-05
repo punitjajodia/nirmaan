@@ -220,7 +220,7 @@ class Nirmaan extends Component {
 
   render() {
     return (
-      <>
+      <React.Fragment>
         <ToolbarLayout>
           <FormatToolbar editor={this.editor} onChange={this.onChange} />
           <DataToolbar editor={this.editor} onChange={this.onChange} />
@@ -243,7 +243,7 @@ class Nirmaan extends Component {
           </EditorWrapper>
           <Viewer editor={this.editor} />
         </Layout>
-      </>
+      </React.Fragment>
     );
   }
 }

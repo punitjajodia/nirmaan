@@ -15,7 +15,7 @@ export const DataToolbar = props => {
       <Popup modal trigger={<button>Import JSON</button>}>
         {close => {
           return (
-            <>
+            <React.Fragment>
               <Header>
                 <h3>Paste JSON here</h3>
                 <PrimaryButton
@@ -34,14 +34,14 @@ export const DataToolbar = props => {
                 rows={20}
                 onChange={e => setEditorJson(e.target.value)}
               />
-            </>
+            </React.Fragment>
           );
         }}
       </Popup>
       <Popup modal trigger={<button>Import HTML</button>}>
         {close => {
           return (
-            <>
+            <React.Fragment>
               <Header>
                 <h3>Paste HTML here</h3>
 
@@ -65,7 +65,7 @@ export const DataToolbar = props => {
                   setImportHtml(html);
                 }}
               />
-            </>
+            </React.Fragment>
           );
         }}
       </Popup>
