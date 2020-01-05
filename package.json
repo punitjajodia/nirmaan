@@ -1,7 +1,7 @@
 {
   "name": "programiz-editor",
   "version": "0.1.0",
-  "main": "src/Nirmaan.js",
+  "main": "build/Nirmaan.js",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
@@ -33,7 +33,8 @@
     "eject": "react-scripts eject",
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
-    "netlify": "yarn build && netlify deploy --prod"
+    "netlify": "yarn build && netlify deploy --prod",
+    "prepare": "babel src -d build"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -46,6 +47,11 @@
   ],
   "homepage": "http://punitjajodia.github.io/nirmaan",
   "devDependencies": {
-    "gh-pages": "^2.0.1"
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
+    "gh-pages": "^2.1.1"
   }
 }
