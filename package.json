@@ -3,16 +3,17 @@
   "version": "0.1.0",
   "main": "lib/Nirmaan.js",
   "peerDependencies": {
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3"
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",
     "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.7.4",
     "gh-pages": "^2.1.1",
-    "@babel/preset-env": "^7.7.7"
+    "install-peers-cli": "^2.2.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
@@ -44,7 +45,8 @@
     "predeploy": "yarn build",
     "deploy": "gh-pages -d build",
     "netlify": "yarn build && netlify deploy --prod",
-    "prepare": "babel src --out-dir lib --copy-files"
+    "prepare": "babel src --out-dir lib --copy-files",
+    "install-peers": "install-peers"
   },
   "eslintConfig": {
     "extends": "react-app"

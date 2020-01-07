@@ -4,6 +4,8 @@ import htmlSerializer from "./serializers/HtmlSerializer";
 import { ExportToolbar } from "./toolbars/ExportToolbar";
 import { html } from "js-beautify";
 import { fontFamilies } from "./styles/fonts";
+import { Value, Block } from "slate";
+import { defaultSlateJson } from "./Nirmaan";
 
 export const viewerContent = (editor, viewMode) => {
   if (!editor) {
@@ -102,6 +104,21 @@ const HtmlEditor = props => {
         readOnly={!editingMode}
       />
     </div>
+  );
+};
+
+export const JsonViewer = props => {
+  console.log("Props inside jsonviewer are ", props);
+  const json = props.json || defaultSlateJson;
+  const value = Value.fromJSON(json);
+  const html = htmlSerializer.serialize(value);
+
+  return (
+    <div
+      dangerouslySetInnerHTML={{
+        __html: html
+      }}
+    />
   );
 };
 

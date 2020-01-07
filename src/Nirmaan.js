@@ -11,7 +11,7 @@ import { ImageNode } from "./nodes/ImageNode";
 import SoftBreak from "slate-soft-break";
 import DeepTable from "slate-deep-table";
 import { listPlugin } from "./plugins/listPlugin";
-import Viewer from "./Viewer";
+import Viewer, { JsonViewer } from "./Viewer";
 import styled from "styled-components";
 import { alignPlugin } from "./plugins/alignPlugin";
 import { notePlugin } from "./plugins/notePlugin";
@@ -20,8 +20,6 @@ import { linkPlugin } from "./plugins/linkPlugin";
 import { pasteHtmlPlugin } from "./plugins/pasteHtmlPlugin";
 import { SubMark, SupMark } from "./marks/SubSupMark";
 import { fontFamilies } from "./styles/fonts";
-
-const existingValue = JSON.parse(localStorage.getItem("content"));
 
 const schema = {
   // This section is need for the image upload functionality, if this is not there, then we cannot add anything after an image.
@@ -58,34 +56,32 @@ const plugins = [
   pasteHtmlPlugin()
 ];
 
-class Nirmaan extends Component {
-  // Set the initial value when the app is first constructed.
-
-  initialValue = Value.fromJSON(
-    existingValue || {
-      document: {
+export const defaultSlateJson = {
+  document: {
+    nodes: [
+      {
+        object: "block",
+        type: "paragraph",
         nodes: [
           {
-            object: "block",
-            type: "paragraph",
-            nodes: [
+            object: "text",
+            leaves: [
               {
-                object: "text",
-                leaves: [
-                  {
-                    text: "A line of text in a paragraph."
-                  }
-                ]
+                text: "A line of text in a paragraph."
               }
             ]
           }
         ]
       }
-    }
-  );
+    ]
+  }
+};
+
+class Nirmaan extends Component {
+  // Set the initial value when the app is first constructed.
 
   state = {
-    value: this.initialValue || this.props.defaultValue
+    value: Value.fromJSON(defaultSlateJson)
   };
 
   // On change, update the app's React state with the new editor value.
@@ -94,7 +90,7 @@ class Nirmaan extends Component {
     window.content = json;
 
     const content = JSON.stringify(json);
-    localStorage.setItem("content", content);
+    localStorage.setItem(this.props.id || "content", content);
 
     this.setState({ value });
     this.props.onChange && this.props.onChange(json);
