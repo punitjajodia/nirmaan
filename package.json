@@ -2,6 +2,18 @@
   "name": "programiz-editor",
   "version": "0.1.0",
   "main": "lib/Nirmaan.js",
+  "peerDependencies": {
+    "react": "^16.8.3",
+    "react-dom": "^16.8.3"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/preset-react": "^7.7.4",
+    "gh-pages": "^2.1.1",
+    "@babel/preset-env": "^7.7.7"
+  },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.15",
     "@fortawesome/free-solid-svg-icons": "^5.7.2",
@@ -10,8 +22,6 @@
     "immutable": "^4.0.0-rc.12",
     "js-beautify": "^1.10.0",
     "pretty": "^2.0.0",
-    "react": "^16.8.3",
-    "react-dom": "^16.8.3",
     "react-icons-kit": "^1.2.1",
     "react-popup": "^0.10.0",
     "react-scripts": "3.3.0",
@@ -45,12 +55,5 @@
     "not ie <= 11",
     "not op_mini all"
   ],
-  "homepage": "http://punitjajodia.github.io/nirmaan",
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-0": "^6.24.1",
-    "gh-pages": "^2.1.1"
-  }
+  "homepage": "http://punitjajodia.github.io/nirmaan"
 }
