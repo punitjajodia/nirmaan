@@ -7,7 +7,6 @@ import { CodeMark, SampMark, VarMark } from "./marks/CodeMark";
 import { codeNodePlugin } from "./plugins/codePlugin";
 import { FormatToolbar } from "./toolbars/FormatToolBar";
 import { BlocksToolbar } from "./toolbars/BlocksToolbar";
-import { ImageNode } from "./nodes/ImageNode";
 import SoftBreak from "slate-soft-break";
 import DeepTable from "slate-deep-table";
 import { listPlugin } from "./plugins/listPlugin";
@@ -67,7 +66,7 @@ export const defaultSlateJson = {
             object: "text",
             leaves: [
               {
-                text: "A line of text in a paragraph."
+                text: ""
               }
             ]
           }
@@ -81,12 +80,13 @@ class Nirmaan extends Component {
   // Set the initial value when the app is first constructed.
 
   state = {
-    value: Value.fromJSON(defaultSlateJson)
+    value: Value.fromJSON(this.props.defaultValue || defaultSlateJson)
   };
 
   // On change, update the app's React state with the new editor value.
   onChange = ({ value }) => {
     const json = value.toJSON();
+
     window.content = json;
 
     const content = JSON.stringify(json);
@@ -226,6 +226,7 @@ class Nirmaan extends Component {
           <BlocksToolbar editor={this.editor} onChange={this.onChange} />
           <EditorWrapper>
             <Editor
+              placeholder="Type Something Here"
               plugins={plugins}
               value={this.state.value}
               onChange={this.onChange}
@@ -263,6 +264,7 @@ const EditorWrapper = styled.div`
   max-height: 100vh;
   overflow: auto;
   padding-right: 20px;
+  border: 1px solid #eeeeee;
 `;
 
 const ToolbarLayout = styled.div`

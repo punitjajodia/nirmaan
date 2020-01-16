@@ -108,13 +108,15 @@ const HtmlEditor = props => {
 };
 
 export const JsonViewer = props => {
-  console.log("Props inside jsonviewer are ", props);
   const json = props.json || defaultSlateJson;
   const value = Value.fromJSON(json);
   const html = htmlSerializer.serialize(value);
 
   return (
     <div
+      style={{
+        minHeight: "1.5em"
+      }}
       dangerouslySetInnerHTML={{
         __html: html
       }}

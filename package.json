@@ -9,7 +9,7 @@
   "devDependencies": {
     "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",
-    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-react": "^7.7.4",
     "gh-pages": "^2.1.1",
@@ -31,6 +31,7 @@
     "slate-deep-table": "^0.8.0",
     "slate-edit-table": "^0.18.0",
     "slate-html-serializer": "^0.7.34",
+    "slate-plain-serializer": "^0.7.11",
     "slate-react": "^0.21.16",
     "slate-schema-violations": "^0.1.39",
     "slate-soft-break": "^0.9.0",
