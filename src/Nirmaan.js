@@ -270,7 +270,6 @@ const EditorWrapper = styled.div`
 const ToolbarLayout = styled.div`
   width: 100%;
   max-width: 1000px;
-  position: fixed;
   display: grid;
   top: 0;
   grid-template-columns: auto auto;
@@ -285,7 +284,7 @@ const Layout = styled.div`
   grid-column-gap: 40px;
 
   @media (min-width: 720px) {
-    grid-template-columns: 50% 50%;
+    grid-template-columns: 50px 4fr 3fr;
   }
 `;
 

@@ -230,7 +230,6 @@ export const BlocksToolbar = props => {
 const BlocksToolbarWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  position: fixed;
   left: 0;
   top: 4%;
 `;
