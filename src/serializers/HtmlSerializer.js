@@ -270,8 +270,9 @@ const rules = [
           childOfPre &&
           childOfPre.tagName &&
           childOfPre.tagName.toLowerCase() === "code" &&
-          childOfPre.classList.contains("exec")
+          el.classList.contains("exec")
         ) {
+          delete data.class;
           return {
             object: "block",
             type: "code",
@@ -284,7 +285,7 @@ const rules = [
           childOfPre &&
           childOfPre.tagName &&
           childOfPre.tagName.toLowerCase() === "code" &&
-          !childOfPre.classList.contains("exec")
+          !el.classList.contains("exec")
         ) {
           return {
             object: "block",
