@@ -1,13 +1,22 @@
 {
-  "main.css": "/nirmaan/static/css/main.d47efe10.chunk.css",
-  "main.js": "/nirmaan/static/js/main.d42ccdea.chunk.js",
-  "main.js.map": "/nirmaan/static/js/main.d42ccdea.chunk.js.map",
-  "runtime~main.js": "/nirmaan/static/js/runtime~main.b38b4f67.js",
-  "runtime~main.js.map": "/nirmaan/static/js/runtime~main.b38b4f67.js.map",
-  "static/js/2.935b6856.chunk.js": "/nirmaan/static/js/2.935b6856.chunk.js",
-  "static/js/2.935b6856.chunk.js.map": "/nirmaan/static/js/2.935b6856.chunk.js.map",
-  "index.html": "/nirmaan/index.html",
-  "precache-manifest.4ac900d8f86f7ec3a04ec28ac1ff6c3b.js": "/nirmaan/precache-manifest.4ac900d8f86f7ec3a04ec28ac1ff6c3b.js",
-  "service-worker.js": "/nirmaan/service-worker.js",
-  "static/css/main.d47efe10.chunk.css.map": "/nirmaan/static/css/main.d47efe10.chunk.css.map"
+  "files": {
+    "main.css": "/nirmaan/static/css/main.fd860a05.chunk.css",
+    "main.js": "/nirmaan/static/js/main.c894f869.chunk.js",
+    "main.js.map": "/nirmaan/static/js/main.c894f869.chunk.js.map",
+    "runtime-main.js": "/nirmaan/static/js/runtime-main.e4d0c25c.js",
+    "runtime-main.js.map": "/nirmaan/static/js/runtime-main.e4d0c25c.js.map",
+    "static/js/2.83f1cc74.chunk.js": "/nirmaan/static/js/2.83f1cc74.chunk.js",
+    "static/js/2.83f1cc74.chunk.js.map": "/nirmaan/static/js/2.83f1cc74.chunk.js.map",
+    "index.html": "/nirmaan/index.html",
+    "precache-manifest.b6d90db1a9550887ca535564dee3d2dc.js": "/nirmaan/precache-manifest.b6d90db1a9550887ca535564dee3d2dc.js",
+    "service-worker.js": "/nirmaan/service-worker.js",
+    "static/css/main.fd860a05.chunk.css.map": "/nirmaan/static/css/main.fd860a05.chunk.css.map",
+    "static/js/2.83f1cc74.chunk.js.LICENSE": "/nirmaan/static/js/2.83f1cc74.chunk.js.LICENSE"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e4d0c25c.js",
+    "static/js/2.83f1cc74.chunk.js",
+    "static/css/main.fd860a05.chunk.css",
+    "static/js/main.c894f869.chunk.js"
+  ]
 }
